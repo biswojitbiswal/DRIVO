@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    image: {
+    avatar: {
         type: String,
         required: true
     },
@@ -40,7 +40,7 @@ userSchema.methods.isPassswordCorrect = async function(password) {
     return await bcrypt.compare(password, this.password)
 }
 
-userSchema.methods.generateAccessToken = function () {
+userSchema.methods.generateToken = function () {
     return jwt.sign(
         {
             _id: this._id,
