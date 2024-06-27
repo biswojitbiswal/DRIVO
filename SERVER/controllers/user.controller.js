@@ -14,12 +14,20 @@ const generateAccessToken = async(userId) => {
     }
 }
 
+const checkLicencesNo = (license_Number) => {
+    // Regex to check valid
+    // license_Number  
+    let regex = new RegExp(/^(([A-Z]{2}[0-9]{2})( )|([A-Z]{2}-[0-9]{2}))((19|20)[0-9][0-9])[0-9]{7}$/);
+      // Return false if the licenseNumber is empty or does not match the regex
+    return regex.test(license_Number);
+}
+
 const registerUser = AsyncHandler( async (req, res) => {
     try {
-        const {userName, email, password } = req.body;
+        const {userName, email, password, phone, dob, dl } = req.body;
 
         if([userName, email, password].some((field) => field?.trim() === "")){
-            res.status(400).json({message : "All Fields Are Required"});
+            return res.status(400).json({message : "All Fields Are Required"});
         }
 
         const userExist = await User.findOne({
@@ -27,32 +35,41 @@ const registerUser = AsyncHandler( async (req, res) => {
         });
 
         if(userExist){
-            res.status(409).json({message : "Username or Email Already Exists?"})
+            return res.status(409).json({message : "Username or Email Already Exists?"})
+        }
+
+        const isValidLicense = checkLicencesNo(dl);
+
+        if(!isValidLicense){
+            return res.status(400).json({message: "Not A Valid DL Number"})
         }
 
         const avatarImageFile = req.files?.avatar[0]?.path;
 
         if(!avatarImageFile){
-            res.status(400).json({message: "Avatar File Required"});
+            return res.status(400).json({message: "Avatar File Required"});
         }
 
         const avatarImage = await uploadFileOnCloudinary(avatarImageFile);
 
         if(!avatarImage){
-            res.status(400).json({message: "Avatar File Required"});
+            return res.status(400).json({message: "Avatar File Required"});
         }
 
         const user = await User.create({
             userName,
             email,
             password,
+            phone,
+            dob,
+            dl,
             avatar: avatarImage.url,
         })
 
         const createdUser = await User.findById(user._id).select("-password")
 
         if(!createdUser){
-            res.status(500).json({message: "Something Went Wrong While Registering User"})
+            return res.status(500).json({message: "Something Went Wrong While Registering User"})
         }
 
         const {accessToken} = await generateAccessToken(createdUser._id);
@@ -77,13 +94,13 @@ const loginUser = AsyncHandler( async(req, res) => {
         const user = await User.findOne({email});
     
         if(!user){
-            res.status(404).json({message: "User Does Not Exists."});
+            return res.status(404).json({message: "User Does Not Exists."});
         }
     
         const isPasswordValid = await user.isPassswordCorrect(password);
     
         if(!isPasswordValid){
-            res.status(401).json({message: "Invalid User Authentication!"});
+            return res.status(401).json({message: "Invalid User Authentication!"});
         }
     
         const {accessToken} = await generateAccessToken(user._id);
