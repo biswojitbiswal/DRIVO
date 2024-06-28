@@ -2,6 +2,7 @@ import "dotenv/config"
 import express from "express"
 import connectDb from "./DB/db.js";
 import userRouter from './routes/user.routes.js'
+import vehicleRouter from './routes/vehicle.routes.js'
 
 const app = express(); 
 
@@ -12,6 +13,7 @@ app.use(express.static("public"));
 app.use(express.json());
 
 app.use("/api/drivo/user", userRouter);
+app.use("/api/drivo/vehicle", vehicleRouter)
 
 connectDb()
 .then(() => {
