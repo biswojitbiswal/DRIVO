@@ -22,6 +22,11 @@ const vehicleSchema = new mongoose.Schema({
         enum: ["Petrol", "Diesel", "CNG", "EV"],
         required: true
     },
+    vehicleType: {
+        type: String,
+        enum: ["Manual", "Automatic"],
+        required: true,
+    }
 }, {timestamps: true})
 
 export const Vehicle = mongoose.model("Vehicle", vehicleSchema);

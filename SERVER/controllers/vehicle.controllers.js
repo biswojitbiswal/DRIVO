@@ -1,12 +1,12 @@
 import { AsyncHandler } from "../utils/AsyncHandler.js";
 import {Vehicle} from '../model/vehicle.model.js'
 import { uploadFileOnCloudinary } from "../utils/cloudinary.js";
-import { json } from "express";
+
 
 
 const addVehicle = AsyncHandler( async( req, res) => {
     try {
-        const {vehicleModel, seats, price, oil} = req.body;
+        const {vehicleModel, seats, price, oil, vehicleType} = req.body;
 
         const vehicleImageFile = req.files?.image[0]?.path;
 
@@ -25,6 +25,7 @@ const addVehicle = AsyncHandler( async( req, res) => {
             seats,
             price,
             oil,
+            vehicleType,
             image: vehicleImage.url,
         })
 
