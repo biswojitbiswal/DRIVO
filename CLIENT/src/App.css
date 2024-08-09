@@ -3,7 +3,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: rgb(18, 11, 11);
+  /* background-color: rgb(18, 11, 11); */
   position: relative;
   overflow-x: hidden;
 }
@@ -250,6 +250,8 @@ footer{
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  background-color: black;
+
 }
 footer .contact-info{
   padding: 1rem;
@@ -288,8 +290,214 @@ footer .social-media i{
   font-size: 1.75rem;
   margin-right: .75rem;
 }
+/* =========Error page========== */
+#error-page {
+  text-align: center;
+  padding: 2rem;
 
+}
 
+.status-code {
+  font-size: 5rem;
+  line-height: 0;
+  color: #388087;
+}
+
+.page-not {
+  color: #388087;
+  font-size: 1.5rem;
+}
+
+.error-info {
+  font-size: 1.15rem;
+}
+
+.btns {
+
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.btn {
+  padding: .5rem .25rem;
+  width: 125px;
+  border-radius: .5rem;
+  border: none;
+  background-color: #388087;
+  color: aliceblue;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.btn:hover {
+  background-color: transparent;
+  border: 2px solid #388087;
+  color: #388087;
+}
+
+/* ============about page============== */
+.about-page{
+  padding: 4rem;
+}
+.about-page .about-description{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 600px;
+  padding-bottom: 2rem;
+}
+.about-page .about-description .description{
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 2rem;
+  text-align: left;
+  font-size: 1.2rem;
+  color: rgb(65, 62, 62);
+  h1{
+    color: #388087;
+    font-size: 2rem;
+  }
+}
+.about-page .about-description .about-img{
+  width: 40%;
+  height: 80%;
+
+}
+.about-page .about-description .about-img img{
+  width: 100%;
+  height: 100%;
+}
+.about-advantages{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.about-advantages h1{
+  font-size: 2rem;
+  color: #388087;
+}
+.about-advantages .advantages{
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+  gap: 1rem;
+}
+.about-advantages .advantages .advantage{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  height: 220px;
+  border: 1px solid #388087;
+  border-radius: 2rem;
+  text-align: center;
+  padding: 1rem;
+  
+}
+.about-advantages .advantages .advantage h2{
+  color: #388087;
+}
+
+/* ==========Terms & Conditions=========== */
+.terms-conditions{
+  padding: 1rem 5rem;
+}
+.terms-conditions .tm-heading{
+  text-align: center;
+  color: #388087;
+  font-size: 2rem;
+}
+
+/* =========contact page========== */
+.contact-page{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2rem;
+  h1{
+    margin: 0;
+  }
+}
+.contact-form{
+  width: 400px;
+  height: 450px;
+  border: 1px solid #388087;
+  border-radius: .5rem;
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+.input-fields{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: .35rem;
+  margin-bottom: 1rem;
+}
+.input-field{
+  height: 30px;
+  border: 1px solid #388087;
+  border-radius: .5rem;
+  padding: 0 0 0 1rem;
+  outline: 0;
+  color: #388087;
+  font-size: 1.3rem;
+}
+.input-fields textarea{
+  border: 1px solid #388087;
+  border-radius: .5rem;
+  padding: 0 0 0 1rem;
+  outline: 0;
+  color: #388087;
+  font-size: 1rem;
+}
+
+/* =========login page========== */
+.login-page{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2rem;
+  h1{
+    margin: 0 0 1rem 0;
+    font-size: 2rem;
+  }
+}
+.login-form{
+  width: 400px;
+  height: 200px;
+  border: 1px solid #388087;
+  border-radius: .5rem;
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* ======register page========== */
+.register-page{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2rem;
+  h1{
+    margin: 0 0 1rem 0;
+    font-size: 2rem;
+  }
+}
+.register-form{
+  width: 400px;
+  height: 450px;
+  border: 1px solid #388087;
+  border-radius: .5rem;
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
 
 
 
@@ -317,7 +525,7 @@ footer .social-media i{
     padding: 0;
     width: 100%;
     height: 100vh;
-    background-color: rgb(18, 11, 11);
+    /* background-color: rgb(18, 11, 11); */
   }
   #root {
     margin: 0;
@@ -362,6 +570,29 @@ footer .social-media i{
     flex-wrap: wrap;
     justify-content: space-between;
   }
+
+  .about-page .about-description {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+  }
+  .about-page .about-description .description {
+    width: 80%; 
+  }
+  .about-page .about-description .about-img {
+    width: 85%;
+    height: 700px;
+  }
+  .about-advantages .advantages {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .about-page .about-description .description h1 {
+    font-size: 1.5rem;
+  }
   
 }
 
@@ -405,4 +636,25 @@ footer .social-media i{
     width: 250px;
     height: 200px;
   }
+
+
+  /* ========about page========== */
+  .about-page {
+    padding: 1rem;
+  }
+  .about-page .about-description .description h1 {
+    font-size: 1.2rem;
+  }
+  .about-page .about-description .about-img {
+    width: 90%;
+    height: 500px;
+  }
+
+  .terms-conditions{
+    padding: 1.5rem;
+  }
+  .terms-conditions .tm-heading{
+    font-size: 1.5rem;
+  }
+
 }

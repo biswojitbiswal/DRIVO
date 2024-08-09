@@ -17,10 +17,6 @@ const userSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
-    dob: {
-        type: String,
-        required: true
-    },
     password: {
         type: String,
         required: true,
@@ -28,10 +24,6 @@ const userSchema = new mongoose.Schema({
     avatar: {
         type: String,
         required: true
-    },
-    dl : {
-        type: String,
-        required: true,
     },
     isAdmin: {
         type: Boolean,

@@ -3,6 +3,8 @@ import express from "express"
 import connectDb from "./DB/db.js";
 import userRouter from './routes/user.routes.js'
 import vehicleRouter from './routes/vehicle.routes.js'
+import errorMiddleware from "./middlewares/error.middleware.js";
+import contactRouter from './routes/contact.routes.js'
 
 const app = express(); 
 
@@ -14,6 +16,9 @@ app.use(express.json());
 
 app.use("/api/drivo/user", userRouter);
 app.use("/api/drivo/vehicle", vehicleRouter)
+app.use("/api/drivo/contact", contactRouter)
+
+app.use(errorMiddleware)
 
 connectDb()
 .then(() => {

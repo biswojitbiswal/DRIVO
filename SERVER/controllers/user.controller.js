@@ -14,19 +14,19 @@ const generateAccessToken = async(userId) => {
     }
 }
 
-const checkLicencesNo = (license_Number) => {
-    // Regex to check valid
-    // license_Number  
-    let regex = new RegExp(/^(([A-Z]{2}[0-9]{2})( )|([A-Z]{2}-[0-9]{2}))((19|20)[0-9][0-9])[0-9]{7}$/);
-      // Return false if the licenseNumber is empty or does not match the regex
-    return regex.test(license_Number);
-}
+// const checkLicencesNo = (license_Number) => {
+//     // Regex to check valid
+//     // license_Number  
+//     let regex = new RegExp(/^(([A-Z]{2}[0-9]{2})( )|([A-Z]{2}-[0-9]{2}))((19|20)[0-9][0-9])[0-9]{7}$/);
+//       // Return false if the licenseNumber is empty or does not match the regex
+//     return regex.test(license_Number);
+// }
 
 const registerUser = AsyncHandler( async (req, res) => {
     try {
-        const {userName, email, password, phone, dob, dl } = req.body;
+        const {userName, email, password, phone} = req.body;
 
-        if([userName, email, password].some((field) => field?.trim() === "")){
+        if([userName, email, password, phone].some((field) => field?.trim() === "")){
             return res.status(400).json({message : "All Fields Are Required"});
         }
 
@@ -36,12 +36,6 @@ const registerUser = AsyncHandler( async (req, res) => {
 
         if(userExist){
             return res.status(409).json({message : "Username or Email Already Exists?"})
-        }
-
-        const isValidLicense = checkLicencesNo(dl);
-
-        if(!isValidLicense){
-            return res.status(400).json({message: "Not A Valid DL Number"})
         }
 
         const avatarImageFile = req.files?.avatar[0]?.path;
@@ -61,8 +55,6 @@ const registerUser = AsyncHandler( async (req, res) => {
             email,
             password,
             phone,
-            dob,
-            dl,
             avatar: avatarImage.url,
         })
 
