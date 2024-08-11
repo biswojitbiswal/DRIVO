@@ -1,5 +1,6 @@
 import "dotenv/config"
 import express from "express"
+import cors from 'cors'
 import connectDb from "./DB/db.js";
 import userRouter from './routes/user.routes.js'
 import vehicleRouter from './routes/vehicle.routes.js'
@@ -10,9 +11,15 @@ const app = express();
 
 const PORT = process.env.PORT || 7000
 
+app.use(cors({
+    origin: process.env.CORS_ORIGIN,
+    methods: ["GET, POST, PUT, DELETE, PATCH, HEAD"],
+    credentials: true
+}))
+
+app.use(express.json());
 app.use(express.urlencoded({extended: true, limit: "40kb"}))
 app.use(express.static("public"));
-app.use(express.json());
 
 app.use("/api/drivo/user", userRouter);
 app.use("/api/drivo/vehicle", vehicleRouter)

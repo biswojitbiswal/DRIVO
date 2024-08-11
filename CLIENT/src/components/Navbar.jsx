@@ -1,10 +1,13 @@
 import React from 'react'
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import { useAuth } from '../Store/Auth';
 
 
 function Navbar() {
     const [menu, setMenu] = useState(false);
+
+    const {isLoggedIn} = useAuth();
 
     const toggleBtn = () => {
         setMenu(!menu);
@@ -35,12 +38,21 @@ function Navbar() {
                     <li onClick={toggleBtn}>
                         <NavLink to="/terms&conditions">Terms & Conditons</NavLink>
                     </li>
-                    <li onClick={toggleBtn}>
-                        <NavLink to="/login">Login</NavLink>
-                    </li>
-                    <li onClick={toggleBtn}>
-                        <NavLink to="/register">Register</NavLink>
-                    </li>
+                    {
+                        isLoggedIn ? 
+                        
+                        <li onClick={toggleBtn}>
+                            <NavLink to="/logout">Logout</NavLink>
+                        </li> : 
+                        <>
+                        <li onClick={toggleBtn}>
+                            <NavLink to="/login">Login</NavLink>
+                        </li>
+                        <li onClick={toggleBtn}>
+                            <NavLink to="/register">Register</NavLink>
+                        </li>
+                        </>
+                    }
                 </ul>
 
             </div>

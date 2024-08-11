@@ -1,6 +1,5 @@
 import {AsyncHandler} from '../utils/AsyncHandler.js'
 import {User} from "../model/user.model.js"
-import { uploadFileOnCloudinary } from '../utils/cloudinary.js';
 
 const generateAccessToken = async(userId) => {
     try {
@@ -38,24 +37,11 @@ const registerUser = AsyncHandler( async (req, res) => {
             return res.status(409).json({message : "Username or Email Already Exists?"})
         }
 
-        const avatarImageFile = req.files?.avatar[0]?.path;
-
-        if(!avatarImageFile){
-            return res.status(400).json({message: "Avatar File Required"});
-        }
-
-        const avatarImage = await uploadFileOnCloudinary(avatarImageFile);
-
-        if(!avatarImage){
-            return res.status(400).json({message: "Avatar File Required"});
-        }
-
         const user = await User.create({
             userName,
             email,
             password,
             phone,
-            avatar: avatarImage.url,
         })
 
         const createdUser = await User.findById(user._id).select("-password")
@@ -111,8 +97,27 @@ const loginUser = AsyncHandler( async(req, res) => {
     }
 })
 
+const getCurrUsers = AsyncHandler(async(req, res) => {
+    try {
+        const user = req.user
+
+        if(!user) {
+            return res.status(404).json({message: "Something Went Wrong"})
+        }
+
+        return res.status(200).json({
+            message: "User Fetched Successfully", 
+            userData : user
+        })
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({message: "Internal Server Error"})
+    }
+})
+
 
 export {
     registerUser,
     loginUser,
+    getCurrUsers,
 }
