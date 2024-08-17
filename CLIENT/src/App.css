@@ -499,6 +499,120 @@ footer .social-media i{
   margin-bottom: 2rem;
 }
 
+/* =======admin panel======= */
+.admin-controller{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.admin-upper{
+  width: 100%;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #388087;
+  color: aliceblue;
+  font-size: 1.5rem;
+  position: relative;
+}
+.admin-lower{
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  height: auto;
+  /* background-color: red; */
+  position: relative;
+}
+.admin-sidebar{
+  width: 400px;
+  background-color: #388087;
+  padding: 1rem;
+}
+.admin-navbar{
+  display: none;
+  
+}
+.admin-sidebar ul{
+  display: flex;
+  flex-direction: column;
+}
+.admin-sidebar ul li, 
+.admin-sidebar ul li a {
+  list-style: none;
+  text-decoration: none;
+  color: aliceblue;
+  padding: 1.5rem 2rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.admin-sidebar ul li{
+  border: 1px solid aliceblue;
+  margin-bottom: 1rem;
+  border-radius: 1rem;
+  text-align: center;
+}
+
+
+
+
+
+section{
+  background-color: #8d9fa1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  height: auto;
+  width: 100%;
+  padding: 1rem 0rem;
+}
+
+table {
+  width: 70%;
+  border-collapse: collapse;
+  border: 2px solid #388087;
+}
+
+/* Style table headers */
+th {
+  background-color: #388087;
+  text-align: left;
+  padding: 8px;
+}
+
+/* Style table rows */
+td {
+  padding: 8px;
+  border-bottom: 1px solid rgb(23, 94, 157);
+}
+thead tr{
+  color: white;
+}
+
+
+/* Style links */
+.admin-edit-btn {
+  text-decoration: none;
+  color: #007bff;
+  background-color: rgb(23, 94, 157);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Style delete button */
+button {
+  background-color: rgb(23, 94, 157);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+}
+
 
 
 
@@ -592,6 +706,25 @@ footer .social-media i{
   }
   .about-page .about-description .description h1 {
     font-size: 1.5rem;
+  }
+
+  /* =======admin page====== */
+  .admin-navbar{
+    display: block;
+    position: absolute;
+    left: 2rem;
+    font-size: 2.5rem;
+  }
+  .admin-sidebar {
+    position: absolute;
+    left: -400px;
+    width: 400px;
+    min-height: 100vh;
+    height: auto;
+  
+  }
+  .sidebar-active{
+    left: 0;
   }
   
 }
