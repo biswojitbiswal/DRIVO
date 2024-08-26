@@ -554,6 +554,30 @@ footer .social-media i{
   text-align: center;
 }
 
+/* =====add vehicle======== */
+.vehicle-page{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2rem;
+  h1{
+    margin: 0 0 1rem 0;
+    font-size: 2rem;
+  }
+}
+.vehicle-form{
+  width: 400px;
+  height: 500px;
+  border: 1px solid #388087;
+  border-radius: .5rem;
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+.vehicle-form select{
+  height: 35px;
+}
+
 
 
 

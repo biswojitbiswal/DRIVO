@@ -8,6 +8,8 @@ const vehicleSchema = new mongoose.Schema({
     seats: {
         type: Number,
         required: true,
+        min: 4,
+        max: 10
     },
     price : {
         type: Number,
@@ -17,10 +19,10 @@ const vehicleSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    oil: {
+    fuel: {
         type: String,
-        enum: ["Petrol", "Diesel", "CNG", "EV"],
-        required: true
+        enum: ["Petrol", "Diesel", "CNG"],
+        required: true,
     },
     vehicleType: {
         type: String,

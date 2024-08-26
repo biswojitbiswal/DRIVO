@@ -6,7 +6,7 @@ import { uploadFileOnCloudinary } from "../utils/cloudinary.js";
 
 const addVehicle = AsyncHandler( async( req, res) => {
     try {
-        const {vehicleModel, seats, price, oil, vehicleType} = req.body;
+        const {vehicleModel, seats, price, fuel, vehicleType} = req.body;
 
         const vehicleImageFile = req.files?.image[0]?.path;
 
@@ -24,7 +24,7 @@ const addVehicle = AsyncHandler( async( req, res) => {
             vehicleModel,
             seats,
             price,
-            oil,
+            fuel,
             vehicleType,
             image: vehicleImage.url,
         })
@@ -32,7 +32,7 @@ const addVehicle = AsyncHandler( async( req, res) => {
         const addedVehicle = await Vehicle.findById(vehicle._id);
 
         if(!addedVehicle){
-            return res.status(400).json({message: "Something WrongWhile Adding The Vahicle"})
+            return res.status(400).json({message: "Something Wrong While Adding The Vahicle"})
         }
 
         return res.status(200).json({
@@ -46,6 +46,8 @@ const addVehicle = AsyncHandler( async( req, res) => {
         return res.status(500).json({message: "Internal Backend Error"})
     }
 })
+
+
 
 export {
     addVehicle,
