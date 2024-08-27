@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../Store/Auth';
+import imageCompression from 'browser-image-compression';
 
 function AdminVehicle() {
   const [vehicle, setVehicle] = useState({
@@ -23,9 +24,22 @@ function AdminVehicle() {
     });
   }
 
-  const handleFile = (e) =>{
+  const handleFile = async(e) =>{
     const file = e.target.files[0];
-    setVehicle({...vehicle, image: file});
+    if (file) {
+      try {
+        const options = {
+          maxSizeMB: 0.5,
+          maxWidthOrHeight: 1024,
+          useWebWorker: true,
+        };
+
+        const compressedFile = await imageCompression(file, options);
+        setVehicle({ ...vehicle, image: compressedFile });
+      } catch (error) {
+        console.error('Error compressing image:', error);
+      }
+    }
   }
 
   const addNewVehicle = async(e) => {

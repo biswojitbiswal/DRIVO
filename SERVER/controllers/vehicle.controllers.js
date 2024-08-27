@@ -42,8 +42,21 @@ const addVehicle = AsyncHandler( async( req, res) => {
         })
         
     } catch (error) {
-        console.log(error);
-        return res.status(500).json({message: "Internal Backend Error"})
+        next(error);
+    }
+})
+
+const getAllVehicle = AsyncHandler(async(req, res) => {
+    try {
+        const vehicles = await Vehicle.find({});
+
+        if(!vehicles){
+            return res.status(404).json({message: "Vehicles Not Found"});
+        }
+
+        return res.status(200).json(vehicles)
+    } catch (error) {
+        next(error);
     }
 })
 
@@ -51,4 +64,5 @@ const addVehicle = AsyncHandler( async( req, res) => {
 
 export {
     addVehicle,
+    getAllVehicle,
 }

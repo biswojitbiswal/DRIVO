@@ -312,16 +312,11 @@ footer .social-media i{
   font-size: 1.15rem;
 }
 
-.btns {
 
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-}
 
 .btn {
-  padding: .5rem .25rem;
-  width: 125px;
+  height: auto;
+  width: auto;
   border-radius: .5rem;
   border: none;
   background-color: #388087;
@@ -330,11 +325,7 @@ footer .social-media i{
   font-weight: 600;
 }
 
-.btn:hover {
-  background-color: transparent;
-  border: 2px solid #388087;
-  color: #388087;
-}
+
 
 /* ============about page============== */
 .about-page{
