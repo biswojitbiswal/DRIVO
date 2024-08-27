@@ -23,7 +23,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         theme="colored"
         transition:Bounce
       />
-    </React.StrictMode>,
+    </React.StrictMode>
   </AuthContextProvider>
 
 )

@@ -62,7 +62,8 @@ body {
   flex-direction: column;
   align-items: center;
   background-color: #388087;
-  height: auto;
+  height: 100%;
+  width: 100%;
   /* padding: 0rem 2rem; */
 }
 .home-container .heading{
@@ -290,6 +291,52 @@ footer .social-media i{
   font-size: 1.75rem;
   margin-right: .75rem;
 }
+
+/* =======Explore page ========= */
+#explore{
+  padding: 4rem 0rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  place-items: center;
+
+}
+.outer-container{
+  padding: .5rem;
+  border: 2px solid aliceblue;
+  border-radius: 2.5rem;
+  margin-bottom: 2rem;
+}
+.vehicle-container{
+  height: 450px;
+  width: 350px;
+  background-color: aliceblue;
+  border-radius: 2.5rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.vehicle-container .vehicle-image{
+  height: 50%;
+  width: 100%;
+}
+.vehicle-container .vehicle-image img{
+  height: 100%;
+  width: 100%;
+  border-radius: 1rem;
+}
+.vehicle-details{
+  text-align: center;
+  color: #388087;
+}
+.vehicle-details p{
+  font-weight: 700;
+}
+
+
+
+
 /* =========Error page========== */
 #error-page {
   text-align: center;
@@ -578,10 +625,8 @@ section{
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
   height: auto;
   width: 100%;
-  padding: 1rem 0rem;
 }
 
 table {

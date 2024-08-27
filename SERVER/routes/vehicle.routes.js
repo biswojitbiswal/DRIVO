@@ -18,7 +18,7 @@ router.route("/add").post(
     addVehicle
 )
 
-router.route("/getallvehicles").get(getAllVehicle);
+router.route("/getvehicles").get(getAllVehicle);
 
 export default router
 
