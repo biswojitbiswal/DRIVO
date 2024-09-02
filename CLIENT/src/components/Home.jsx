@@ -5,7 +5,8 @@ import SecondImg from '../Images/FERRARI.png'
 
 function Home() {
   const [vehicles, setVehicles] = useState([])
-  const getAllVehicle = async() => {
+  
+  const getAllVehicle = async () => {
     try {
       const response = await fetch(`http://localhost:4000/api/drivo/vehicle/getvehicles`, {
         method: "GET",
@@ -14,7 +15,7 @@ function Home() {
       const data = await response.json();
       // console.log(data);
 
-      if(response.ok){
+      if (response.ok) {
         setVehicles(data);
       }
     } catch (error) {
@@ -28,38 +29,40 @@ function Home() {
   return (
     <>
       <section id='home'>
-      <div className='home-container'>
-        <h1 className='heading tracking-in-expand'>Drive Your Adventure with Our Premium Car Rentals</h1>
-        <div className='img-container'>
-          <div className="main-img slide-in-fwd-left">
-            <img src={MainImg} alt="" />
+        <div className='home-container'>
+          <h1 className='heading tracking-in-expand'>Drive Your Adventure with Our Premium Car Rentals</h1>
+          <div className='img-container'>
+            <div className="main-img slide-in-fwd-left">
+              <img src={MainImg} alt="First Car" />
+            </div>
+            <div className='second-img slide-in-fwd-right'>
+              <img src={SecondImg} alt="Second Car" />
+            </div>
           </div>
-          <div className='second-img slide-in-fwd-right'>
-            <img src={SecondImg} alt="" />
+          <h1 className='description text-focus-in'>Find the Perfect Ride for Your Next Journey!</h1>
+          <div className="explore-btn text-focus-in">
+            <NavLink to="#explore">Explore</NavLink>
           </div>
         </div>
-        <h1 className='description text-focus-in'>Find the Perfect Ride for Your Next Journey!</h1>
-        <div className="explore-btn text-focus-in">
-          <NavLink to="#explore">Explore</NavLink>
-        </div>
-      </div>
       </section>
-      <section id='explore'>
+
+
+      <section id="explore" className="explore-section">
         {
           vehicles.map((currVehicle, index) => {
-            return <div className='outer-container' key={index}>
+            return <div className="outer-container" key={index}>
               <div className="vehicle-container">
-              <div className="vehicle-image">
-                <img src={currVehicle.image} alt="Image" loading='lazy' />
+                <div className="vehicle-image">
+                  <img src={currVehicle.image} alt="Image" loading="lazy" />
+                </div>
+                <div className="vehicle-details">
+                  <h2>{currVehicle.vehicleModel}</h2>
+                  <p><i className="fa-solid fa-person"></i> {currVehicle.seats} Seater</p>
+                  <p><i className="fa-solid fa-indian-rupee-sign"></i> {currVehicle.price} / 24Hr</p>
+                  <p><i className="fa-solid fa-gas-pump"></i> {currVehicle.fuel} / <i className="fa-solid fa-gear"></i> {currVehicle.vehicleType}</p>
+                  <button className='btn'>Book</button>
+                </div>
               </div>
-              <div className="vehicle-details">
-                <h2>{currVehicle.vehicleModel}</h2>
-                <p><i class="fa-solid fa-person"></i> {currVehicle.seats} Seater</p>
-                <p><i class="fa-solid fa-indian-rupee-sign"></i> {currVehicle.price} / 24Hr</p>
-                <p><i class="fa-solid fa-gas-pump"></i> {currVehicle.fuel} / <i class="fa-solid fa-gear"></i> {currVehicle.vehicleType}</p>
-                <button className='btn'>Book</button>
-              </div>
-            </div>
             </div>
           })
         }
