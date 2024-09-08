@@ -1,21 +1,27 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { setHours, setMinutes } from 'date-fns';
+import {useAuth} from '../Store/Auth'
+
+
+const roundToNearestHour = (date) => {
+  const roundedDate = new Date(date);
+  roundedDate.setMinutes(0, 0, 0);
+  return roundedDate;
+};
 
 function Booking() {
-  const roundToNearestHour = (date) => {
-    const roundedDate = new Date(date);
-    roundedDate.setMinutes(0, 0, 0);
-    return roundedDate;
-  };
+  const [vehicle, setvehicle] = useState({});
   const [birthDate, setBirthDate] = useState();
   const [pickupTime, setPickupTime] = useState(roundToNearestHour(new Date()));
   const [dropupTime, setDropupTime] = useState(roundToNearestHour(new Date()));
 
   const { vehicleId } = useParams()
-  console.log(vehicleId)
+  // console.log(vehicleId)
+
+  const {authorization} = useAuth();
 
 
   const today = new Date();
@@ -31,6 +37,26 @@ function Booking() {
   const maxDropupTime = setHours(setMinutes(new Date(), 0), 23);
 
 
+  const getVehicleInfo = async() => {
+    try {
+      const response = await fetch(`http://localhost:4000/api/drivo/vehicle/${vehicleId}`, {
+        method: "GET",
+        headers: {
+          Authorization: authorization,
+        }
+      })
+        const data = await response.json();
+        console.log(data);
+     
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+
+  useEffect(() => {
+    getVehicleInfo()
+  }, [])
   return (
     <>
       <section id='booking-page'>
