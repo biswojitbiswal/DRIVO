@@ -331,6 +331,16 @@ footer .social-media i {
   margin-right: .75rem;
 }
 
+#booking-page{
+  height: 100vh;
+  text-align: center;
+  display: flex;
+  
+}
+
+
+
+
 /* =======Explore page ========= */
 #explore {
   padding: 4rem 4rem;
@@ -414,6 +424,10 @@ footer .social-media i {
   color: aliceblue;
   font-size: 1.5rem;
   font-weight: 600;
+}
+.btn a{
+  text-decoration: none;
+  color: aliceblue;
 }
 
 

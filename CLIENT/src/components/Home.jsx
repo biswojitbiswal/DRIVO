@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import MainImg from '../Images/BMW.png'
 import SecondImg from '../Images/FERRARI.png'
+
 
 function Home() {
   const [vehicles, setVehicles] = useState([])
@@ -60,7 +61,7 @@ function Home() {
                   <p><i className="fa-solid fa-person"></i> {currVehicle.seats} Seater</p>
                   <p><i className="fa-solid fa-indian-rupee-sign"></i> {currVehicle.price} / 24Hr</p>
                   <p><i className="fa-solid fa-gas-pump"></i> {currVehicle.fuel} / <i className="fa-solid fa-gear"></i> {currVehicle.vehicleType}</p>
-                  <button className='btn'>Book</button>
+                  <button className='btn'><Link to={`/booking/${currVehicle._id}`}>Book</Link></button>
                 </div>
               </div>
             </div>

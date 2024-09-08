@@ -13,13 +13,6 @@ const generateAccessToken = async(userId) => {
     }
 }
 
-// const checkLicencesNo = (license_Number) => {
-//     // Regex to check valid
-//     // license_Number  
-//     let regex = new RegExp(/^(([A-Z]{2}[0-9]{2})( )|([A-Z]{2}-[0-9]{2}))((19|20)[0-9][0-9])[0-9]{7}$/);
-//       // Return false if the licenseNumber is empty or does not match the regex
-//     return regex.test(license_Number);
-// }
 
 const registerUser = AsyncHandler( async (req, res) => {
     try {

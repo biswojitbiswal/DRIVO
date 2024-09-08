@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { upload } from "../middlewares/multer.middleware.js";
-import { addVehicle, getAllVehicle } from "../controllers/vehicle.controllers.js";
+import { addVehicle, getAllVehicle, getVehicle, newBooking } from "../controllers/vehicle.controllers.js";
 import authVerify from "../middlewares/Auth.middleware.js";
 import adminVerify from "../middlewares/admin.middleware.js"
 
@@ -19,6 +19,8 @@ router.route("/add").post(
 )
 
 router.route("/getvehicles").get(getAllVehicle);
+router.route("/:vehicleId").get(authVerify, getVehicle);
+router.route("/booking/:vehicleId").post(authVerify, newBooking);
 
 export default router
 
