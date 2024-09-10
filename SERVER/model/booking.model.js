@@ -47,8 +47,16 @@ const bookingSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    paymentId: {
-        type: String, // Razorpay Payment ID
+    bookingId: {  //razorpay order id
+        type: String,
+        required: true,
+    },
+    paymentSignature: {
+        type: String,
+        // required: true,
+    },
+    paymentId: {   //razorpay payment id
+        type: String, 
     },
     paymentStatus: {
         type: String,

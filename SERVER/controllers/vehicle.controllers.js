@@ -1,170 +1,221 @@
 import { AsyncHandler } from "../utils/AsyncHandler.js";
-import {Vehicle} from '../model/vehicle.model.js'
+import { Vehicle } from "../model/vehicle.model.js";
 import { uploadFileOnCloudinary } from "../utils/cloudinary.js";
-import {Booking} from "../model/booking.model.js"
+import { Booking } from "../model/booking.model.js";
 import mongoose from "mongoose";
+import Razorpay from "razorpay";
+import crypto from "crypto";
 
+const addVehicle = AsyncHandler(async (req, res) => {
+  try {
+    const { vehicleModel, seats, price, fuel, vehicleType } = req.body;
 
+    const vehicleImageFile = req.files?.image[0]?.path;
 
-const addVehicle = AsyncHandler( async( req, res) => {
-    try {
-        const {vehicleModel, seats, price, fuel, vehicleType} = req.body;
-
-        const vehicleImageFile = req.files?.image[0]?.path;
-
-        if(!vehicleImageFile){
-            return res.status(400).json({message: "Avatar File Is Required"})
-        }
-
-        const vehicleImage = await uploadFileOnCloudinary(vehicleImageFile);
-
-        if(!vehicleImage){
-            return res.status(400).json({message: "Avatar File Is Required"})
-        }
-
-        const vehicle = await Vehicle.create({
-            vehicleModel,
-            seats,
-            price,
-            fuel,
-            vehicleType,
-            image: vehicleImage.url,
-        })
-
-        const addedVehicle = await Vehicle.findById(vehicle._id);
-
-        if(!addedVehicle){
-            return res.status(400).json({message: "Something Wrong While Adding The Vahicle"})
-        }
-
-        return res.status(200).json({
-            message: "Vehicle Added Successfully!",
-            vehicle: addedVehicle,
-            vehicleId: addedVehicle._id.toString()
-        })
-
-    } catch (error) {
-        next(error);
+    if (!vehicleImageFile) {
+      return res.status(400).json({ message: "Avatar File Is Required" });
     }
-})
 
-const getAllVehicle = AsyncHandler(async(req, res) => {
-    try {
-        const vehicles = await Vehicle.find({});
+    const vehicleImage = await uploadFileOnCloudinary(vehicleImageFile);
 
-        if(!vehicles){
-            return res.status(404).json({message: "Vehicles Not Found"});
-        }
-
-        return res.status(200).json(vehicles)
-    } catch (error) {
-        next(error);
+    if (!vehicleImage) {
+      return res.status(400).json({ message: "Avatar File Is Required" });
     }
-})
 
-const getVehicle = AsyncHandler(async(req, res) => {
-    try {
-        const {vehicleId} = req.params;
-        // console.log(vehicleId)
-        const vehicle = await Vehicle.findById(vehicleId);
-    
-        if(!vehicle){
-            return res.status(404).json({message: "Vehicle Not Found"});
-        }
-    
-        return res.status(200).json(vehicle)
-    } catch (error) {
-        next(error);
+    const vehicle = await Vehicle.create({
+      vehicleModel,
+      seats,
+      price,
+      fuel,
+      vehicleType,
+      image: vehicleImage.url,
+    });
+
+    const addedVehicle = await Vehicle.findById(vehicle._id);
+
+    if (!addedVehicle) {
+      return res
+        .status(400)
+        .json({ message: "Something Wrong While Adding The Vahicle" });
     }
-})
 
-
-function checkLicencesNo(dlNo) {
-    const dlPattern = /^[A-Z]{2}\d{2}\d{11}$/;
-    return dlPattern.test(dlNo);
-}
-    
-
-
-const newBooking = AsyncHandler(async (req, res) => {
-    try {
-        const { bookingName, contact, dob, dlNo, pickUpDT, dropUpDT, pickUpLcation } = req.body;
-        const vehicleId = req.params.vehicleId;
-
-        const validDlNo = checkLicencesNo(dlNo);
-
-        if (!validDlNo) {
-            return res.status(400).json({ message: "Not a Valid DL No" });
-        }
-
-        const vehicle = await Vehicle.findById(vehicleId);
-
-        if (!vehicle) {
-            return res.status(404).json({ message: "Vehicle not found" });
-        }
-
-        const pickUpDate = new Date(pickUpDT);
-        const dropUpDate = new Date(dropUpDT);
-
-        const durationInMs = dropUpDate - pickUpDate;
-        const durationInHours = Math.ceil(durationInMs / (1000 * 60 * 60));
-
-        let totalBookPrice = vehicle.price * (durationInHours / 24);
-
-        if (durationInHours % 24 != 0) {
-            totalBookPrice = vehicle.price * Math.ceil(durationInHours / 24);
-        }
-
-        if (isNaN(totalBookPrice)) {
-            return res.status(400).json({ message: "Total booking price calculation failed" });
-        }
-
-        
-        const booking = await Booking.create({
-            bookingName,
-            contact,
-            dob,
-            dlNo,
-            totalAmount: totalBookPrice,
-            pickUpDT,
-            dropUpDT,
-            pickUpLcation,
-        });
-
-        if (!booking) {
-            return res.status(400).json({ message: "Something Went Wrong" });
-        }
-
-        let userid = new mongoose.Types.ObjectId(req.userId);
-
-        await Booking.updateOne(
-            {
-                _id: booking._id
-            },
-            {
-                $set: {
-                    bookedBy: userid,
-                    bookedVehicle: new mongoose.Types.ObjectId(vehicleId)
-                }
-            },
-            { upsert: false, new: true }
-        );
-
-        return res.status(200).json({
-            message: "Booked Successfully",
-        });
-    } catch (error) {
-        console.log(error);
-        return res.status(500).json({ message: "Error From Backend" });
-    }
+    return res.status(200).json({
+      message: "Vehicle Added Successfully!",
+      vehicle: addedVehicle,
+      vehicleId: addedVehicle._id.toString(),
+    });
+  } catch (error) {
+    next(error);
+  }
 });
 
+const getAllVehicle = AsyncHandler(async (req, res) => {
+  try {
+    const vehicles = await Vehicle.find({});
 
+    if (!vehicles) {
+      return res.status(404).json({ message: "Vehicles Not Found" });
+    }
 
+    return res.status(200).json(vehicles);
+  } catch (error) {
+    next(error);
+  }
+});
 
-export {
-    addVehicle,
-    getAllVehicle,
-    getVehicle,
-    newBooking,
+const getVehicle = AsyncHandler(async (req, res) => {
+  try {
+    const { vehicleId } = req.params;
+    // console.log(vehicleId)
+    const vehicle = await Vehicle.findById(vehicleId);
+
+    if (!vehicle) {
+      return res.status(404).json({ message: "Vehicle Not Found" });
+    }
+
+    return res.status(200).json(vehicle);
+  } catch (error) {
+    next(error);
+  }
+});
+
+function isValid_License_Number(license_Number) {
+  let regex = /^[A-Z]{2}[0-9]{2}[- ]?(19|20)\d{2}[0-9]{7}$/;
+  
+  return regex.test(license_Number); //DL12-20201234567, MH02 19991234567, KA05 20211234567
 }
+
+const razorpayPaymentInstances = new Razorpay({
+  key_id: process.env.RAZORPAY_KEY_ID,
+  key_secret: process.env.RAZORPAY_KEY_SECRET,
+});
+
+const newBooking = AsyncHandler(async (req, res) => {
+  try {
+    const {
+      bookingName,
+      contact,
+      dob,
+      dlNo,
+      totalAmount,
+      pickUpDT,
+      dropUpDT,
+      pickUpLcation,
+    } = req.body;
+
+    const vehicleId = req.params.vehicleId;
+
+    const validDlNo = isValid_License_Number(dlNo);
+
+    if (!validDlNo) {
+      return res.status(400).json({ message: "Not a Valid DL No" });
+    }
+
+    const options = {
+      amount: totalAmount * 100,
+      currency: "INR",
+      receipt: `receipt_${new Date().getTime()}`,
+      payment_capture: 1
+    };
+
+    const order = await razorpayPaymentInstances.orders.create(options);
+
+    if (!order) {
+      return res.status(500).json({ message: "Could Not Create Order" });
+    }
+
+    const booking = await Booking.create({
+      bookingName,
+      contact,
+      dob,
+      dlNo,
+      totalAmount,
+      pickUpDT,
+      dropUpDT,
+      pickUpLcation,
+      bookingId: order.id,
+    });
+
+    if (!booking) {
+      return res.status(400).json({ message: "Something Went Wrong" });
+    }
+
+    let userid = new mongoose.Types.ObjectId(req.userId);
+
+    await Booking.updateOne(
+      {
+        _id: booking._id,
+      },
+      {
+        $set: {
+          bookedBy: userid,
+          bookedVehicle: new mongoose.Types.ObjectId(vehicleId),
+        },
+      },
+      { upsert: false, new: true }
+    );
+
+    return res.status(200).json({
+      message: "Booked Successfully",
+      id: order.id,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Error From Backend" });
+  }
+});
+
+const razorpayVerify = AsyncHandler(async (req, res) => {
+  try {
+    const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body;
+
+   
+    console.log(req.body);
+
+    const sign = razorpay_order_id + "|" + razorpay_payment_id;
+
+    const expectedSign = crypto
+      .createHmac("sha256", process.env.RAZORPAY_KEY_SECRET)
+      .update(sign.toString())
+      .digest("hex");
+
+    const isAuthentic = expectedSign === razorpay_signature;
+
+    if (isAuthentic) {
+   
+        const updatedBooking = await Booking.updateOne(
+          { bookingId: razorpay_order_id }, 
+          {
+            $set: {
+              paymentId: razorpay_payment_id,
+              paymentSignature: razorpay_signature,
+              paymentStatus: "Paid",
+              booked: true,
+            }
+          }
+        );
+  
+        if (updatedBooking.nModified === 0) {
+          return res.status(400).json({
+            success: false,
+            message: "Booking not found or already updated",
+          });
+        }
+  
+        return res.status(200).json({
+          success: true,
+          message: "Booking Confirmed",
+        });
+      } else {
+        return res.status(400).json({
+          success: false,
+          message: "Invalid payment signature",
+        });
+      }
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({message: "Internal Server Error"});
+  }
+});
+
+export { addVehicle, getAllVehicle, getVehicle, newBooking, razorpayVerify };

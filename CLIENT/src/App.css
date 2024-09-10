@@ -335,9 +335,35 @@ footer .social-media i {
   height: 100vh;
   text-align: center;
   display: flex;
-  
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 3rem 1rem;
 }
 
+.booking-container{
+  width: 50%;
+  height: 100%;
+  border: 1px solid gray;
+  padding: 1rem;
+}
+.booking-details{
+  width: 50%;
+  height: 100%;
+  border: 1px solid gray;
+  padding: 1rem;
+}
+.vehicle-info{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border-bottom: 1px solid gray;
+}
+.booking-details .input-fields{
+  display: flex;
+  flex-direction: row;
+  width: 350px;
+}
 
 
 
