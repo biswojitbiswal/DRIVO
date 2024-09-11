@@ -3,8 +3,6 @@ import { AsyncHandler } from "../utils/AsyncHandler.js";
 import { User } from "../model/user.model.js";
 import { Contact } from "../model/contact.model.js";
 
-
-
 const getAllUsers = AsyncHandler(async(req, res) => {
     try {
         const users = await User.find({}).select("-password");
@@ -33,7 +31,24 @@ const getAllContacts = AsyncHandler(async(req, res) => {
     }
 })
 
+const deleteuser = AsyncHandler(async(req, res) => {
+    try {
+        const userId = req.params.userId;
+
+        const user = await User.findByIdAndDelete(userId);
+
+        if(!user) {
+            return res.status(400).json({message: "User Not Found"});
+        }
+
+        return res.status(200).json(user);
+    } catch (error) {
+        next(error);
+    }
+})
+
 export {
     getAllUsers,
-    getAllContacts
+    getAllContacts,
+    deleteuser
 }

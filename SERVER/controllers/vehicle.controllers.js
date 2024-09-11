@@ -93,15 +93,7 @@ const razorpayPaymentInstances = new Razorpay({
 const newBooking = AsyncHandler(async (req, res) => {
   try {
     const {
-      bookingName,
-      contact,
-      dob,
-      dlNo,
-      totalAmount,
-      pickUpDT,
-      dropUpDT,
-      pickUpLcation,
-    } = req.body;
+      bookingName, dob, contact, dlNo, totalAmount, pickUpDT, dropUpDT, pickUpLcation} = req.body;
 
     const vehicleId = req.params.vehicleId;
 

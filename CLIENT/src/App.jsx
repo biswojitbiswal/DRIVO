@@ -34,6 +34,7 @@ function App() {
           <Route path='/logout' element={<Logout />} />
           <Route path='/admin' element={<AdminLayout />}>
             <Route path='users' element={<AdminUsers />} />
+            <Route path='users/deleteuser/:id' element={<AdminUsers />} />
             <Route path='contacts' element={<AdminContacts />} />
             <Route path='vehicles' element={<AdminVehicles />} />
           </Route>

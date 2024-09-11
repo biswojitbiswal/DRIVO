@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import {useAuth} from '../Store/Auth'
 import { useNavigate } from 'react-router-dom';
 import {Link} from 'react-router-dom'
+import { toast } from 'react-toastify';
 
 function AdminUsers() {
   const [users, setUsers] = useState([]);
@@ -27,6 +28,27 @@ function AdminUsers() {
         // console.log(users)
         setUsers(data);
         navigate("/admin/users");
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  const deleteUser = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:4000/api/drivo/admin/deleteuser/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: authorization,
+        }
+      });
+  
+      const data = await response.json();
+      console.log(data);
+  
+      if(response.ok){
+        getAllUsers();
+        toast.error("User Deleted");
+      }
     } catch (error) {
       console.error(error)
     }
@@ -59,7 +81,7 @@ function AdminUsers() {
                         <Link className='admin-edit-btn'>Edit</Link>
                       </td>
                       <td>
-                        <button>Delete</button>
+                        <button onClick={() => deleteUser(currUser._id)}>Delete</button>
                       </td>
                     </tr>
                   })

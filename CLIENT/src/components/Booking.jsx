@@ -126,11 +126,6 @@ function Booking() {
       theme: {
         color: "#5f63b8"
       },
-      method: {
-        upi: true, // Enables UPI
-        card: true, // Enables card option
-        netbanking: true // Enables net banking
-      }
     };
     const rzp1 = new window.Razorpay(options);
     rzp1.open();
