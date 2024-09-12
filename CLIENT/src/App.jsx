@@ -14,6 +14,7 @@ import AdminLayout from './AdminPanel/AdminLayout'
 import AdminUsers from './AdminPanel/AdminUsers'
 import AdminContacts from './AdminPanel/AdminContacts'
 import AdminVehicles from './AdminPanel/AdminVehicles'
+import AdminEditUsers from './AdminPanel/AdminEditUser'
 import Booking from './components/Booking'
 
 function App() {
@@ -34,7 +35,7 @@ function App() {
           <Route path='/logout' element={<Logout />} />
           <Route path='/admin' element={<AdminLayout />}>
             <Route path='users' element={<AdminUsers />} />
-            <Route path='users/deleteuser/:id' element={<AdminUsers />} />
+            <Route path='users/edit/:id' element={<AdminEditUsers />} />
             <Route path='contacts' element={<AdminContacts />} />
             <Route path='vehicles' element={<AdminVehicles />} />
           </Route>

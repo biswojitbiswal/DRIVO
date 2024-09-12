@@ -36,6 +36,9 @@ function AdminLayout() {
                     
                 </ul>
             </nav>
+            {/* <div className="admin-home">
+                <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia voluptatum quas doloremque nihil quam maxime, expedita minima cumque animi voluptate? Sint magni nesciunt dolor doloribus sed quae voluptate enim repellat!</h1>
+            </div> */}
             <Outlet />
             </div>
             

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useAuth } from '../Store/Auth'
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 function AdminContacts() {
   const [contacts, setContacts] = useState([])
@@ -25,6 +26,27 @@ function AdminContacts() {
 
   }
 
+  const handleDleteContact = async(id) => {
+    try {
+      const response = await fetch(`http://localhost:4000/api/drivo/admin/contact/delete/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: authorization,
+        }
+      })
+  
+      const data = await response.json();
+      console.log(data);
+  
+      if(response.ok){
+        getAllContacts();
+        toast.error("Contact Deleted");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
     getAllContacts();
   }, []);
@@ -46,7 +68,9 @@ function AdminContacts() {
         return <tr key={index}>
           <td>{contact.email}</td>
           <td>{contact.message}</td>
-          <td><button>Delete</button></td>
+          <td>
+            <button onClick={() => handleDleteContact(contact._id)}>Delete</button>
+            </td>
         </tr>
       })
     }
