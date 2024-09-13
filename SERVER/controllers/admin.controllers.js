@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import { AsyncHandler } from "../utils/AsyncHandler.js";
 import { User } from "../model/user.model.js";
 import { Contact } from "../model/contact.model.js";
+import { Booking } from "../model/booking.model.js";
 
 const getAllUsers = AsyncHandler(async(req, res) => {
     try {
@@ -59,8 +60,7 @@ const getUserById = AsyncHandler(async(req, res) => {
     
         return res.status(200).json(user);
     } catch (error) {
-        console.log(error);
-        return res.status(500).json({message: "Something Went Wrong"});
+        next(error);
     }
 })
 
@@ -86,8 +86,7 @@ const editUserById = AsyncHandler(async(req, res) => {
     
         return res.status(200).json({message: "User Update Succesfully"});
     } catch (error) {
-        console.log(error);
-        return res.status(500).json({message: "Something Went Wrong"});
+        next(error);
     }
 })
 
@@ -99,8 +98,21 @@ const deleteContact = AsyncHandler(async(req, res) => {
 
         return res.status(200).json({message: "Contact Deleted"})
     } catch (error) {
-        console.log(error);
-        return res.status(500).json({message: "Something Went Wrong"})
+        next(error);
+    }
+})
+
+const getAllBooking = AsyncHandler(async(req, res) => {
+    try {
+        const bookings = await Booking.find({}).populate("bookedVehicle", "vehicleModel");
+
+        if(!bookings){
+            return res.status(400).json({message: "Bookings Not Found"});
+        }
+
+        return res.status(200).json(bookings);
+    } catch (error) {
+        next(error);
     }
 })
 
@@ -112,4 +124,5 @@ export {
     getUserById,
     editUserById,
     deleteContact,
+    getAllBooking,
 }

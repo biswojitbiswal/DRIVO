@@ -22,7 +22,7 @@ function AdminLayout() {
             <nav className={`admin-sidebar ${menu ? 'sidebar-active' : ''}`}>
                 <ul>
                     <li>
-                        <NavLink to="/">Home</NavLink>
+                        <NavLink to="/admin">DashBoard</NavLink>
                     </li>
                     <li>
                         <NavLink to="/admin/vehicles">Add Vehicle</NavLink>
@@ -36,9 +36,7 @@ function AdminLayout() {
                     
                 </ul>
             </nav>
-            {/* <div className="admin-home">
-                <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia voluptatum quas doloremque nihil quam maxime, expedita minima cumque animi voluptate? Sint magni nesciunt dolor doloribus sed quae voluptate enim repellat!</h1>
-            </div> */}
+            
             <Outlet />
             </div>
             

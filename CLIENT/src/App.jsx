@@ -16,6 +16,7 @@ import AdminContacts from './AdminPanel/AdminContacts'
 import AdminVehicles from './AdminPanel/AdminVehicles'
 import AdminEditUsers from './AdminPanel/AdminEditUser'
 import Booking from './components/Booking'
+import AdminHome from './AdminPanel/AdminHome'
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
           <Route path='/terms&conditions' element={<TermsConditions />} />
           <Route path='/logout' element={<Logout />} />
           <Route path='/admin' element={<AdminLayout />}>
+            <Route index element={<AdminHome />} />
             <Route path='users' element={<AdminUsers />} />
             <Route path='users/edit/:id' element={<AdminEditUsers />} />
             <Route path='contacts' element={<AdminContacts />} />

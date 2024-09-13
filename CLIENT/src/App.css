@@ -450,10 +450,13 @@ footer .social-media i {
   color: aliceblue;
   font-size: 1.5rem;
   font-weight: 600;
+  margin: 1rem;
 }
 .btn a{
   text-decoration: none;
   color: aliceblue;
+  padding: 1rem .5rem;
+
 }
 
 
