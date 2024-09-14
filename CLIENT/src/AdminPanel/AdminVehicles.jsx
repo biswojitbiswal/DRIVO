@@ -66,7 +66,7 @@ function AdminVehicle() {
         },
         body: formData
       });
-      alert("clicked")
+      // alert("clicked")
       const data = await response.json()
       // console.log(data);
 

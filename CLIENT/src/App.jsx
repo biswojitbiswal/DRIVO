@@ -17,6 +17,7 @@ import AdminVehicles from './AdminPanel/AdminVehicles'
 import AdminEditUsers from './AdminPanel/AdminEditUser'
 import Booking from './components/Booking'
 import AdminHome from './AdminPanel/AdminHome'
+import EditVehicle from './components/EditVehicle'
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/edit/:id' element={<EditVehicle />} />
           <Route path='/booking/:vehicleId' element={<Booking />} />
           <Route path='/about' element={<About />} />
           <Route path='/contact' element={<Contact />} /> 

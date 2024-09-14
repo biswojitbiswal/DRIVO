@@ -13,13 +13,13 @@ const addVehicle = AsyncHandler(async (req, res) => {
     const vehicleImageFile = req.files?.image[0]?.path;
 
     if (!vehicleImageFile) {
-      return res.status(400).json({ message: "Avatar File Is Required" });
+      return res.status(400).json({ message: "Image File Is Required" });
     }
 
     const vehicleImage = await uploadFileOnCloudinary(vehicleImageFile);
 
     if (!vehicleImage) {
-      return res.status(400).json({ message: "Avatar File Is Required" });
+      return res.status(400).json({ message: "Image File Is Required" });
     }
 
     const vehicle = await Vehicle.create({
@@ -152,8 +152,7 @@ const newBooking = AsyncHandler(async (req, res) => {
       id: order.id,
     });
   } catch (error) {
-    console.log(error);
-    return res.status(500).json({ message: "Error From Backend" });
+    next(error)
   }
 });
 
@@ -205,9 +204,68 @@ const razorpayVerify = AsyncHandler(async (req, res) => {
         });
       }
   } catch (error) {
-    console.log(error);
-    return res.status(500).json({message: "Internal Server Error"});
+    next(error)
   }
 });
 
-export { addVehicle, getAllVehicle, getVehicle, newBooking, razorpayVerify };
+const editVehicleInfo = AsyncHandler(async(req, res) => {
+  try {
+    const {price} = req.body;
+    const vehicleId = req.params.vehicleId;
+
+    let newImageUrl;
+    if (req.files && req.files.image && req.files.image.length > 0) {
+      const newImageFile = req.files.image[0].path;
+      const newImage = await uploadFileOnCloudinary(newImageFile);
+      newImageUrl = newImage.url;
+    }
+
+    const updatedVehicle = await Vehicle.findByIdAndUpdate(
+      {_id: vehicleId},
+      {
+        $set: {
+          price,
+          ...(newImageUrl && { image: newImageUrl })
+        }
+      },
+      {new: true}
+
+    )
+
+    if(!updatedVehicle){
+      return res.status(400).json({message: "Vehicle Not Found"});
+    }
+
+    return res.status(200).json({message: "Vehicle Information Updated"});
+  } catch (error) {
+    console.log(error);
+    next(error)
+  }
+})
+
+
+const deleteVehicle = AsyncHandler(async(req, res) => {
+  try {
+    const vehicleId = req.params.vehicleId;
+
+    const deletedVehicle = await Vehicle.findByIdAndDelete(vehicleId);
+
+    if(!deletedVehicle){
+      return res.status(500).json({message: "Something Went Wrong"});
+    }
+
+    return res.status(200).json({message: "Vehicle Deleted Succesfully"})
+  } catch (error) {
+    next(error);
+  }
+})
+
+export { 
+    addVehicle,
+    getAllVehicle,
+    getVehicle, 
+    newBooking, 
+    razorpayVerify ,
+    deleteVehicle,
+    editVehicleInfo,
+};

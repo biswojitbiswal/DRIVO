@@ -19,7 +19,7 @@ app.use(cors({
 }))
 
 app.use(express.json());
-app.use(express.urlencoded({extended: true, limit: "40kb"}))
+app.use(express.urlencoded({extended: true, limit: "10mb"}))
 app.use(express.static("public"));
 
 app.use("/api/drivo/user", userRouter);

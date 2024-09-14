@@ -77,7 +77,8 @@ const editUserById = AsyncHandler(async(req, res) => {
                     userName,
                     phone
                 }
-            }
+            },
+            {new: true, upsert: false, runValidators: true}
         )
     
         if(!editUser){

@@ -3,11 +3,12 @@ import { NavLink, Link } from 'react-router-dom'
 import MainImg from '../Images/BMW.png'
 import SecondImg from '../Images/FERRARI.png'
 import { useAuth } from '../Store/Auth'
+import {toast} from 'react-toastify'
 
 function Home() {
   const [vehicles, setVehicles] = useState([])
 
-  const {user} = useAuth();
+  const {user, authorization} = useAuth();
   
   const getAllVehicle = async () => {
     try {
@@ -20,6 +21,26 @@ function Home() {
 
       if (response.ok) {
         setVehicles(data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const handleDelete = async(id) => {
+    try {
+      const response = await fetch(`http://localhost:4000/api/drivo/vehicle/delete/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: authorization,
+        }
+      })
+
+      const data = await response.json();
+      console.log(data);
+      if(response.ok){
+        getAllVehicle();
+        toast.error("Vehicle Deleted");
       }
     } catch (error) {
       console.log(error);
@@ -66,8 +87,8 @@ function Home() {
                   {
                     user.isAdmin ? (
                     <>
-                      <Link className='btn'>Edit</Link>
-                      <button className='btn'>Delete</button>
+                      <Link className='btn' to={`/edit/${currVehicle._id}`} state={{vehicle: currVehicle}}>Edit</Link>
+                      <button onClick={() => handleDelete(currVehicle._id)} className='btn'>Delete</button>
                     </>
                     ) : ""
                   }
