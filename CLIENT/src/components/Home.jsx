@@ -65,7 +65,7 @@ function Home() {
           </div>
           <h1 className='description text-focus-in'>Find the Perfect Ride for Your Next Journey!</h1>
           <div className="explore-btn text-focus-in">
-            <NavLink to="#explore">Explore</NavLink>
+            <NavLink to="#explore" >Explore</NavLink>
           </div>
         </div>
       </section>
@@ -87,13 +87,13 @@ function Home() {
                   {
                     user.isAdmin ? (
                     <>
-                      <Link className='btn' to={`/edit/${currVehicle._id}`} state={{vehicle: currVehicle}}>Edit</Link>
-                      <button onClick={() => handleDelete(currVehicle._id)} className='btn'>Delete</button>
+                      <Link className='link-btn' to={`/edit/${currVehicle._id}`} state={{vehicle: currVehicle}}>Edit</Link>
+                      <button onClick={() => handleDelete(currVehicle._id)} className='submit-btn'>Delete</button>
                     </>
                     ) : ""
                   }
                   
-                  <Link to={`/booking/${currVehicle._id}`} className='btn'>Book</Link>
+                      <Link to={`/booking/${currVehicle._id}`} className='link-btn'>Book</Link>
 
                 </div>
               </div>

@@ -12,55 +12,62 @@ function Navbar() {
     const toggleBtn = () => {
         setMenu(!menu);
     }
+
+    const handleClose = () => {
+        setMenu(false);
+    }
     return (
         <nav className='navbar'>
-            <div className="logo">
-                <NavLink to="/"><h2><b>Drivo</b></h2></NavLink>
+            <div className="account">
+                <div className='user-account'>
+                    <NavLink className='user-icon' to="/account"><i className="fa-solid fa-user"></i></NavLink>
+                </div>
+                <NavLink className='logo' to="/"><h2><b>Drivo</b></h2></NavLink>
             </div>
             
             <div className="nav-menu">
-
                 <ul className={`${menu ? 'active' : ''}`}>
                     <li className='close' onClick={toggleBtn}>
                         {
                             menu ? <i className="fa-solid fa-x"></i> : ''
                         }
                     </li>
-                    <li onClick={toggleBtn}>
-                        <NavLink to="/">Home</NavLink>
+                    <li onClick={handleClose}>
+                        <NavLink to="/" className={({isActive}) => isActive ? "hovering" : "nav-link"}>Home</NavLink>
                     </li>
-                    <li onClick={toggleBtn}>
-                        <NavLink to="/about">About</NavLink>
+                    <li onClick={handleClose}>
+                        <NavLink to="/about" className={({isActive}) => isActive ? "hovering" : "nav-link"}>About</NavLink>
                     </li>
-                    <li onClick={toggleBtn}>
-                        <NavLink to="/contact">Contact Us</NavLink>
+                    <li onClick={handleClose}>
+                        <NavLink to="/contact" className={({isActive}) => isActive ? "hovering" : "nav-link"}>Contact Us</NavLink>
                     </li>
-                    <li onClick={toggleBtn}>
-                        <NavLink to="/terms&conditions">Terms & Conditons</NavLink>
-                    </li>
+                    <li onClick={handleClose}>
+                        <NavLink to="/terms&conditions" className={({isActive}) => isActive ? "hovering" : "nav-link"}>Terms & Conditons</NavLink>
+                    </li>     
+                </ul> 
+                <div className="auth-link">
                     {
                         isLoggedIn ? 
                         
-                        <li onClick={toggleBtn}>
-                            <NavLink to="/logout">Logout</NavLink>
-                        </li> : 
+                        <div>
+                            <NavLink to="/logout" className={({isActive}) => isActive ? "hovering" : "nav-link"}>Logout</NavLink>
+                        </div> : 
                         <>
-                        <li onClick={toggleBtn}>
-                            <NavLink to="/login">Login</NavLink>
-                        </li>
-                        <li onClick={toggleBtn}>
-                            <NavLink to="/register">Register</NavLink>
-                        </li>
+                        <div>
+                            <NavLink to="/login" className={({isActive}) => isActive ? "hovering" : "nav-link"}>Login</NavLink>
+                        </div>
+                        
                         </>
                     }
-                </ul>
-
-            </div>
-            <div className='toggle-btn' onClick={toggleBtn}>
+                </div> 
+                <div className='toggle-btn' onClick={toggleBtn}>
                 {
                     !menu ? <i className="fa-solid fa-bars"></i> : ''
                 }
+                </div>            
             </div>
+            
+            
         </nav>
     )
 }

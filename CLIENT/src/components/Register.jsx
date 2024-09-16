@@ -70,7 +70,7 @@ function Register() {
             <label htmlFor="password">Password :</label>
             <input className='input-field' name='password' id='password'  type="password" placeholder='Enter Your Password' onChange={handleInput} value={signupData.password} autoComplete='off' required />
           </div>
-          <button type='submit' className='btn submit-btn'>Send</button>
+          <button type='submit' className='submit-btn'>Register</button>
         </form>
       </section>
     </>

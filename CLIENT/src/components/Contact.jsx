@@ -69,12 +69,14 @@ function Contact() {
     <>
       <section className="contact-page">
         <h1>Get In Touch</h1>
-        <p>Feel free to ask for details, don't save any questions!</p>
+        <p>Feel Free To Ask</p>
         <form onSubmit={handleContactForm} className='contact-form'>
 
           <div className="input-fields">
             <label htmlFor="email">Email :</label>
+            
             <input className='input-field' name='email' id='email'  type="email" placeholder='Enter Your email' onChange={handleInput} value={contactData.email} autoComplete='off' required />
+            
           </div>
 
           <div className="input-fields">
@@ -82,7 +84,7 @@ function Contact() {
             <textarea name='message' id='message'  cols="30" rows="10" placeholder='Enter Your Message' onChange={handleInput} value={contactData.message} autoComplete='off' required ></textarea>
           </div>
 
-          <button type='submit' className='btn submit-btn'>Send</button>
+          <button type='submit' className='submit-btn'>Send</button>
         </form>
       </section>
     </>

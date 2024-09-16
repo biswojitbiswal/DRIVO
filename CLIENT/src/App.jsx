@@ -18,6 +18,7 @@ import AdminEditUsers from './AdminPanel/AdminEditUser'
 import Booking from './components/Booking'
 import AdminHome from './AdminPanel/AdminHome'
 import EditVehicle from './components/EditVehicle'
+import Account from './components/Account';
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/edit/:id' element={<EditVehicle />} />
           <Route path='/booking/:vehicleId' element={<Booking />} />
+          <Route path='/account' element={<Account />} />
           <Route path='/about' element={<About />} />
           <Route path='/contact' element={<Contact />} /> 
           <Route path='/login' element={<Login />} />
