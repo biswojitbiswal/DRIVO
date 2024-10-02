@@ -19,6 +19,7 @@ import Booking from './components/Booking'
 import AdminHome from './AdminPanel/AdminHome'
 import EditVehicle from './components/EditVehicle'
 import Account from './components/Account';
+import MyBokings from './components/MyBokings'
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path='/terms&conditions' element={<TermsConditions />} />
+          <Route path='/mybookings' element={<MyBokings />} />
           <Route path='/logout' element={<Logout />} />
           <Route path='/admin' element={<AdminLayout />}>
             <Route index element={<AdminHome />} />

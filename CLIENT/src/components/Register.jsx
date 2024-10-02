@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import {useNavigate} from 'react-router-dom'
 import { useAuth } from '../Store/Auth';
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 function Register() {
   const [signupData, setSignupData] = useState({
@@ -71,6 +72,10 @@ function Register() {
             <input className='input-field' name='password' id='password'  type="password" placeholder='Enter Your Password' onChange={handleInput} value={signupData.password} autoComplete='off' required />
           </div>
           <button type='submit' className='submit-btn'>Register</button>
+          <hr />
+          <div className='login-link'>
+            <Link className='log-link' to="/register">I have an account</Link>
+          </div>
         </form>
       </section>
     </>

@@ -109,8 +109,35 @@ const getCurrUsers = AsyncHandler(async(req, res) => {
 })
 
 
+const editUsernameById = AsyncHandler(async(req, res) => {
+    try {
+       const {userName}  = req.body;
+       
+       const updateUser = await User.findByIdAndUpdate(
+        {
+            _id: req.userId
+        },
+        {
+            $set: {
+                userName,
+            }
+        },
+        {new: true}
+       ).select("-password");
+
+       if(!updateUser){
+        return res.status(400).json({message: "Something Went Wrong"});
+       }
+
+       return res.status(200).json({message: "Username Updated", updateUser});
+    } catch (error) {
+        next(error);
+    }
+})
+
 export {
     registerUser,
     loginUser,
     getCurrUsers,
+    editUsernameById,
 }

@@ -707,6 +707,14 @@ footer .social-media i {
   padding: 2rem 1rem;
 }
 
+.login-link{
+  text-align: center;
+}
+.register-link .log-link{
+  text-decoration: none;
+  font-size: 1.25rem;
+}
+
 .input-field::placeholder{
   color: 1.25rem;
   color: var(--first-color);
@@ -743,7 +751,51 @@ footer .social-media i {
   background-color: #e6e9ee;
   border-radius: .5rem;
   padding: 2rem 1rem;
+}
+/* ==========Account page =========== */
+#account-page{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 0rem;
+}
+#account-page .user-avatar{
+  padding: .25rem;
+  border: 2px solid var(--first-color);
+  height: 300px;
+  width: 300px;
+  border-radius: 50%;
+  position: relative;
+  margin: 2rem;
+}
+#account-page img{
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+}
+#imageUpload{
+  display: none;
+}
 
+.overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.25rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+  opacity: 0;
+}
+.overlay:hover{
+  opacity: 1;
 }
 
 /* =======admin panel======= */

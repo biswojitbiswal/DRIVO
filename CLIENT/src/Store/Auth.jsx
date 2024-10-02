@@ -53,7 +53,7 @@ export const AuthContextProvider = ({children}) => {
 
     
     return (
-        <AuthContext.Provider value={{storeTokenInCookies, logoutUser, isLoggedIn, user, authorization}}>
+        <AuthContext.Provider value={{storeTokenInCookies, logoutUser, isLoggedIn,setUser, user, authorization}}>
             {children}
         </AuthContext.Provider>
     )
