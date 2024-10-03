@@ -19,6 +19,7 @@ import Booking from './components/Booking'
 import AdminHome from './AdminPanel/AdminHome'
 import EditVehicle from './components/EditVehicle'
 import Account from './components/Account';
+import ChangePass from './components/ChangePass'
 import MyBokings from './components/MyBokings'
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
           <Route path='/edit/:id' element={<EditVehicle />} />
           <Route path='/booking/:vehicleId' element={<Booking />} />
           <Route path='/account' element={<Account />} />
+          <Route path='/account/pass' element={<ChangePass />} />
           <Route path='/about' element={<About />} />
           <Route path='/contact' element={<Contact />} /> 
           <Route path='/login' element={<Login />} />

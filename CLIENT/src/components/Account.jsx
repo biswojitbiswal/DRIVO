@@ -65,7 +65,7 @@ function Account() {
           </div>
 
           <div className="change-pass">
-            <Link>Change Password</Link>
+            <Link to="/account/pass">Change Password</Link>
           </div>
 
           <div className="dlt-account">

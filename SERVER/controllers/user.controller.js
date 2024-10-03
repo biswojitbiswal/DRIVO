@@ -53,8 +53,7 @@ const registerUser = AsyncHandler( async (req, res) => {
         });
 
     } catch (error) {
-        console.log(error);
-        return res.status(500).json({message: "Internal Backend Error", error});
+        next(error)
     }
 })
 
@@ -85,8 +84,7 @@ const loginUser = AsyncHandler( async(req, res) => {
             userId: loginUser._id,
         })
     } catch (error) {
-        console.log(error);
-        return res.status(500).json({message: "Internal Server Error"});
+        next(error)
     }
 })
 
@@ -103,8 +101,7 @@ const getCurrUsers = AsyncHandler(async(req, res) => {
             userData : user
         })
     } catch (error) {
-        console.log(error)
-        return res.status(500).json({message: "Internal Server Error"})
+        next(error)
     }
 })
 
@@ -135,9 +132,44 @@ const editUsernameById = AsyncHandler(async(req, res) => {
     }
 })
 
+const passChange = AsyncHandler(async(req, res) => {
+    try {
+        const {oPassword, nPassword, cPassword} = req.body;
+    
+        const user = await User.findById(req.userId);
+    
+        if(!user){
+            return res.status(404).json({message: "User not Found"});
+        }
+    
+        const isOldPasswordValid = await user.isPassswordCorrect(oPassword)
+    
+        if(!isOldPasswordValid){
+            return res.status(400).json({message: "Old Password is not Correct"})
+        }
+    
+        if(nPassword === oPassword){
+            return res.status(400).json({message: "New & Old Password Must Not be Same"})
+        }
+        
+        if(!(nPassword === cPassword)){
+            return res.status(400).json({message : "New Password and Confirm Passwor Must Be Same"})
+        }
+    
+    
+        user.password = nPassword;
+        await user.save({validateBeforeSave: false});
+    
+        return res.status(200).json({message: "Password changed Successfully"})
+    } catch (error) {
+        next(error)
+    }
+})
+
 export {
     registerUser,
     loginUser,
     getCurrUsers,
     editUsernameById,
+    passChange
 }
