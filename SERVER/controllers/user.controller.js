@@ -1,5 +1,6 @@
 import {AsyncHandler} from '../utils/AsyncHandler.js'
 import {User} from "../model/user.model.js"
+import { uploadFileOnCloudinary } from '../utils/cloudinary.js';
 
 const generateAccessToken = async(userId) => {
     try {
@@ -166,10 +167,40 @@ const passChange = AsyncHandler(async(req, res) => {
     }
 })
 
+const editUserAvatar = AsyncHandler(async(req, res) => {
+    try {
+        const avatarImageLocalFilePath = req.files?.avatar[0].path;
+
+        if(!avatarImageLocalFilePath){
+            return res.status(400).json({message: "Avatar File is Required"});
+        }
+
+        const avatarImage = await uploadFileOnCloudinary(avatarImageLocalFilePath);
+
+        if(!avatarImage){
+            return res.status(400).json({message: "Avatar File is Required"});
+        }
+
+        const user = await User.findById(req.userId);
+
+        user.avatar =  avatarImage.url;
+        await user.save({validateBeforeSave: true});
+
+        return res.status(200).json({
+            message: "Avatar File Changed"
+        });
+    } catch (error) {
+        console.log(error)
+        next(error);
+    }
+})
+
+
 export {
     registerUser,
     loginUser,
     getCurrUsers,
     editUsernameById,
-    passChange
+    passChange,
+    editUserAvatar
 }

@@ -88,6 +88,9 @@ body {
   color: var(--first-color);
   margin-left: 1rem;
 }
+.close{
+  display: none;
+}
 
 .hovering{
     border-bottom: 4px solid var(--first-color);
@@ -991,6 +994,7 @@ thead tr {
   }
 
   .close {
+    display: block;
     font-size: 2rem;
     color: #388087;
     margin-left: 1.75rem;

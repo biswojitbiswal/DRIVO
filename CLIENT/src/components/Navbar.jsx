@@ -47,9 +47,13 @@ function Navbar() {
                     <li onClick={handleClose}>
                         <NavLink to="/mybookings" className={({isActive}) => isActive ? "hovering" : "nav-link"}>My Bookings</NavLink>
                     </li>
-                    <li onClick={handleClose}>
+                    {
+                        !isLoggedIn ? 
+
+                        <li onClick={handleClose}>
                         <NavLink to="/register" className={({isActive}) => isActive ? "hovering" : "nav-link"}>Register</NavLink>
-                    </li>  
+                        </li>  : ""
+                    }
                 </ul> 
                 <div className="auth-link">
                     {

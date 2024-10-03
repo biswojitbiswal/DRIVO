@@ -2,17 +2,21 @@ import React, { useState } from 'react'
 import ProfileImg from '../Images/DP.jpg'
 import { useAuth } from '../Store/Auth'
 import { Link } from 'react-router-dom';
-import {toast} from 'react-toastify';
+import imageCompression from 'browser-image-compression';
+import { toast } from 'react-toastify';
+
 
 function Account() {
+  const [selectImage, setSelectImage] = useState(null)
   const [editUser, setEditUser] = useState(false);
   const [changeUsername, setChangeUsername] = useState("");
+
 
   const { setUser, user, authorization } = useAuth();
 
 
-  const editUsername = async() => {
-    if(!editUser){
+  const editUsername = async () => {
+    if (!editUser) {
       setChangeUsername(user.userName || "");
       setEditUser(true);
     } else {
@@ -23,16 +27,16 @@ function Account() {
             "Content-Type": "application/json",
             Authorization: authorization
           },
-          body: JSON.stringify({userName: changeUsername})
+          body: JSON.stringify({ userName: changeUsername })
         })
 
         const data = await response.json();
         // console.log(data.updateUser);
-        if(response.ok){
+        if (response.ok) {
           toast.success("Username Updated");
           setUser(data.updateUser);
           setEditUser(false);
-          
+
         } else {
           toast.error(data.extraDetails ? data.extraDetails : data.message)
         }
@@ -41,6 +45,53 @@ function Account() {
       }
     }
   }
+
+  const handleAvatar = async (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      try {
+        const options = {
+          maxSizeMB: 0.3,
+          maxWidthOrHeight: 1024,
+          useWebWorker: true,
+        };
+
+        const compressedFile = await imageCompression(file, options);
+        setSelectImage(compressedFile);
+        await uploadImage(compressedFile);
+      } catch (error) {
+        console.error('Error compressing image:', error);
+      }
+    }
+  }
+
+  const uploadImage = async (file) => {
+    const formData = new FormData();
+    formData.append('avatar', file);
+
+    try {
+      const response = await fetch(`http://localhost:4000/api/drivo/user/addavatar`, {
+        method: "PATCH",
+        headers: {
+          Authorization: authorization
+        },
+        body: formData
+      })
+
+      const data = await response.json();
+      // console.log(data);
+
+      if (response.ok) {
+        toast.success("Avatar changed Successfully")
+      } else {
+        toast.error(data.extraDetails ? data.extraDetails : data.message);
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+
   return (
     <>
       <section id="account-page">
@@ -50,17 +101,18 @@ function Account() {
               src={user.avatar || ProfileImg}
               alt="User Avatar"
             />
-          <span className='overlay'>Edit</span>
+            <span className='overlay'>Edit</span>
           </label>
           <input
             type="file"
             id="imageUpload"
             accept="image/*"
+            onChange={handleAvatar}
           />
         </div>
         <div className="user-details">
           <div className="edit-username">
-            <input type="text" name="userName" onChange={(e) => setChangeUsername(e.target.value) } value={editUser ? changeUsername : (user.userName || "")} readOnly={!editUser} />
+            <input type="text" name="userName" onChange={(e) => setChangeUsername(e.target.value)} value={editUser ? changeUsername : (user.userName || "")} readOnly={!editUser} />
             <button onClick={editUsername}>{editUser ? "📁" : "✏️"}</button>
           </div>
 
@@ -68,9 +120,9 @@ function Account() {
             <Link to="/account/pass">Change Password</Link>
           </div>
 
-          <div className="dlt-account">
-            <Link>Delete Account</Link>
-          </div>
+          {/* <div className="dlt-account">
+            <Link to='/account/delete'>Delete Account</Link>
+          </div> */}
         </div>
 
       </section>
