@@ -1,6 +1,7 @@
 import {AsyncHandler} from '../utils/AsyncHandler.js'
 import {User} from "../model/user.model.js"
 import { uploadFileOnCloudinary } from '../utils/cloudinary.js';
+import { Booking } from '../model/booking.model.js';
 
 const generateAccessToken = async(userId) => {
     try {
@@ -195,6 +196,21 @@ const editUserAvatar = AsyncHandler(async(req, res) => {
     }
 })
 
+const myBookings = AsyncHandler(async(req, res) => {
+    try {
+        const bookings = await Booking.find({bookedBy: req.userId});
+
+        if(!bookings){
+            return res.status(404).json({message: "Not Found!"});
+        }
+        
+        return res.status(200).json(bookings);
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({message: "Internal Server Error!"})
+    }
+})
+
 
 export {
     registerUser,
@@ -202,5 +218,6 @@ export {
     getCurrUsers,
     editUsernameById,
     passChange,
-    editUserAvatar
+    editUserAvatar,
+    myBookings
 }

@@ -52,7 +52,7 @@ function AdminContacts() {
   }, []);
   return (
     <>
-      <section id="admin-panel admin-users-section">
+      <section id="admin-panel admin-users-section" className='admin-dashboard'>
 
         <table>
           <thead>
@@ -69,7 +69,7 @@ function AdminContacts() {
           <td>{contact.email}</td>
           <td>{contact.message}</td>
           <td>
-            <button onClick={() => handleDleteContact(contact._id)}>Delete</button>
+            <button className='submit-btn' onClick={() => handleDleteContact(contact._id)}>Delete</button>
             </td>
         </tr>
       })

@@ -815,8 +815,7 @@ footer .social-media i {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #388087;
-  color: aliceblue;
+  color: var(--first-color);
   font-size: 1.5rem;
   position: relative;
 }
@@ -826,13 +825,12 @@ footer .social-media i {
   width: 100%;
   min-height: 100vh;
   height: auto;
-  /* background-color: red; */
   position: relative;
 }
 
 .admin-sidebar {
   width: 400px;
-  background-color: #388087;
+  background-color: var(--second-color);
   padding: 1rem;
 }
 
@@ -850,18 +848,93 @@ footer .social-media i {
 .admin-sidebar ul li a {
   list-style: none;
   text-decoration: none;
-  color: aliceblue;
+  color: var(--first-color);
   padding: 1.5rem 2rem;
   font-size: 1.5rem;
   font-weight: 600;
 }
 
 .admin-sidebar ul li {
-  border: 1px solid aliceblue;
+  border: 1px solid var(--first-color);
   margin-bottom: 1rem;
   border-radius: 1rem;
   text-align: center;
 }
+table {
+  width: 100%;
+  height: auto;
+  border-collapse: collapse;
+  border: 1px solid var(--first-color);
+  font-size: 1.25rem;
+}
+
+/* Style table headers */
+th {
+  text-align: center;
+  padding: 8px;
+  border-bottom: 1px solid var(--first-color);
+  border-right: 1px solid var(--first-color);
+
+}
+
+/* Style table rows */
+td {
+  min-width: 100px; 
+  max-width: 200px; 
+  min-height: 50px; 
+  max-height: 100px;
+  padding: .5rem;
+  text-align: center;
+  border-bottom: 1px solid var(--first-color);
+  border-right: 1px solid var(--first-color);
+}
+.pick-location{
+  width: 300px;;
+}
+
+thead tr {
+  color: var(--first-color);
+}
+
+/* =======admin-dashboard======== */
+.admin-dashboard{
+  width: 100%;
+  padding: 1rem;
+  padding-top: 2.5rem;
+  background-color: var(--second-color);
+  overflow: auto;
+}
+.update-status{
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+select{
+  height: 100%;
+  /* padding: .25rem; */
+  color: var(--first-color);
+  font-size: 1.25rem;
+  font-weight: 700;
+  background-color: transparent;
+  border: none;
+  outline: 0;
+  border-radius: .5rem;
+}
+.status-box{
+  border: 2px solid var(--first-color);
+}
+.select-status{
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+.status-btn{
+  height: 35px;
+  padding: .25rem;
+  text-align: center;
+}
+
 
 /* =====add vehicle======== */
 .vehicle-page {
@@ -899,28 +972,7 @@ footer .social-media i {
   width: 100%;
 }
 
-table {
-  width: 70%;
-  border-collapse: collapse;
-  border: 2px solid #388087;
-}
 
-/* Style table headers */
-th {
-  background-color: #388087;
-  text-align: left;
-  padding: 8px;
-}
-
-/* Style table rows */
-td {
-  padding: 8px;
-  border-bottom: 1px solid rgb(23, 94, 157);
-}
-
-thead tr {
-  color: white;
-}
 
 
 

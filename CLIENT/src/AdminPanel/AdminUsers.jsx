@@ -59,7 +59,7 @@ function AdminUsers() {
   }, [])
   return (
     <>
-      <section id="admin-panel admin-users-section">
+      <section id="admin-panel admin-users-section" className='admin-dashboard'>
         <table>
           <thead>
             <tr>
@@ -78,10 +78,10 @@ function AdminUsers() {
                   <td>{currUser.email}</td>
                   <td>{currUser.phone}</td>
                   <td>
-                    <Link className='admin-edit-btn' to={`/admin/users/edit/${currUser._id}`}>Edit</Link>
+                    <Link className='link-btn' to={`/admin/users/edit/${currUser._id}`}>Edit</Link>
                   </td>
                   <td>
-                    <button onClick={() => deleteUser(currUser._id)}>Delete</button>
+                    <button className='submit-btn' onClick={() => deleteUser(currUser._id)}>Delete</button>
                   </td>
                 </tr>
               })

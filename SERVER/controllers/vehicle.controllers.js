@@ -152,7 +152,8 @@ const newBooking = AsyncHandler(async (req, res) => {
       id: order.id,
     });
   } catch (error) {
-    next(error)
+    console.log(error);
+    return res.status(500).json({message: "Internal Server Error!"})
   }
 });
 
@@ -161,7 +162,7 @@ const razorpayVerify = AsyncHandler(async (req, res) => {
     const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body;
 
    
-    console.log(req.body);
+    // console.log(req.body);
 
     const sign = razorpay_order_id + "|" + razorpay_payment_id;
 

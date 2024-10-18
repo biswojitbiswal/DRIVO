@@ -1,7 +1,7 @@
 import {Router} from 'express';
 import authVerify from '../middlewares/Auth.middleware.js'
 import {upload} from '../middlewares/multer.middleware.js'
-import { registerUser, loginUser, getCurrUsers, editUsernameById, passChange, editUserAvatar } from '../controllers/user.controller.js';
+import { registerUser, loginUser, getCurrUsers, editUsernameById, passChange, editUserAvatar, myBookings } from '../controllers/user.controller.js';
 import registerSchema from '../validators/register.validators.js';
 import loginSchema from '../validators/login.validators.js';
 import validate from '../middlewares/validator.middleware.js';
@@ -29,5 +29,6 @@ router.route("/addavatar").patch
         authVerify,
         editUserAvatar
 );
+router.route("/mybookings").get(authVerify, myBookings);
 
 export default router;

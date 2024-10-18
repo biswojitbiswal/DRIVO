@@ -5,6 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { setHours, setMinutes } from 'date-fns';
 import { useAuth } from '../Store/Auth'
 import {toast} from 'react-toastify'
+import { useNavigate } from 'react-router-dom';
 
 
 const roundToNearestHour = (date) => {
@@ -15,9 +16,6 @@ const roundToNearestHour = (date) => {
 
 function Booking() {
   const [vehicle, setvehicle] = useState({});
-  // const [birthDate, setBirthDate] = useState();
-  // const [pickupTime, setPickupTime] = useState(roundToNearestHour(new Date()));
-  // const [dropupTime, setDropupTime] = useState(roundToNearestHour(new Date()));
   const [vehiclePrice, setVehiclePrice] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
   const [formData, setFormData] = useState({
@@ -33,6 +31,7 @@ function Booking() {
 
   const { vehicleId } = useParams()
   const { authorization } = useAuth();
+  const navigate = useNavigate();
   // console.log(vehicleId)
 
 
@@ -91,6 +90,7 @@ function Booking() {
   }
 
   const handlePaymentVerify = async (data) => {
+    // console.log(data)
     const options = {
       key: import.meta.env.VITE_RAZORPAY_KEY_ID,
       amount: data.amount * 100,
@@ -118,6 +118,7 @@ function Booking() {
 
           if(verifyData.message){
             toast.success(verifyData.message);
+            navigate("/mybookings");
           }
         } catch (error) {
           console.log(error)

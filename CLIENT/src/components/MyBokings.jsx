@@ -3,7 +3,9 @@ import React from 'react'
 function MyBokings() {
   return (
     <>
-      <h1>my booking history page</h1>
+      <section>
+        <h1>This is my booking page</h1>
+      </section>
     </>
   )
 }
