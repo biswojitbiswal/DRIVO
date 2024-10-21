@@ -2,6 +2,7 @@ import {AsyncHandler} from '../utils/AsyncHandler.js'
 import {User} from "../model/user.model.js"
 import { uploadFileOnCloudinary } from '../utils/cloudinary.js';
 import { Booking } from '../model/booking.model.js';
+import {Vehicle} from '../model/vehicle.model.js';
 
 const generateAccessToken = async(userId) => {
     try {
@@ -198,9 +199,9 @@ const editUserAvatar = AsyncHandler(async(req, res) => {
 
 const myBookings = AsyncHandler(async(req, res) => {
     try {
-        const bookings = await Booking.find({bookedBy: req.userId});
+        const bookings = await Booking.find({bookedBy: req.userId}).populate('bookedVehicle').sort({createdAt: -1});;
 
-        if(!bookings){
+        if(!bookings || bookings.length === 0){
             return res.status(404).json({message: "Not Found!"});
         }
         

@@ -971,6 +971,113 @@ select{
   height: auto;
   width: 100%;
 }
+/* ===========my booking page=========== */
+.my-bookings-container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 1rem;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--first-color);
+}
+
+.booking-card {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #ddd;
+  padding: 1rem 2.5rem;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  color: hsl(0, 0%, 0%);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.vehicle-info {
+  display: flex;
+}
+
+.vehicle-img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 20px;
+}
+.vehicle-details{
+  text-align: left;
+  color: #000;
+}
+
+.vehicle-details h3 {
+  margin: 0;
+
+}
+
+.vehicle-details p {
+  margin: 5px 0;
+}
+
+.booking-info {
+  width: 43%;
+}
+
+.booking-info p {
+  margin: 8px 0;
+
+}
+.booking-btns{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.status-badge{
+  padding: .5rem 0;
+  background-color: var(--second-color);
+  border-radius: .5rem;
+  color: var(--first-color);
+  text-align: center;
+  margin: .25rem;
+}
+.incomplete-badge{
+  width: 150px;
+  padding: .5rem 0;
+  background-color: var(--second-color);
+  border-radius: .5rem;
+  color: rgb(255, 183, 0);
+  text-align: center;
+  margin: .25rem;
+}
+.status-badge, .cancel-btn, .contact-btn{
+  width: 150px;
+  font-weight: 600;
+}
+.cancel-btn{
+  background-color: rgb(244, 46, 46);
+}
+.contact-btn{
+  text-align: center;
+  padding: .5rem 0rem;
+}
+.booking-price, .pay-status{
+  font-size: 1.5rem;
+  color: var(--first-color);
+}
+
+
+
+
+
+
+
+
+
 
 
 
