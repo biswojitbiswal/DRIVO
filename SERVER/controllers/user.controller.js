@@ -212,6 +212,36 @@ const myBookings = AsyncHandler(async(req, res) => {
     }
 })
 
+const handleCancelBooking = AsyncHandler(async(req, res) => {
+    try {
+        const {bookingId} = req.params;
+        
+        const booking = await Booking.findById(bookingId);
+
+        if(!booking){
+            return res.status(400).json({message: "Not Found"});
+        }
+
+        let canceledBooking;
+        if(booking.status !== 'Completed' && booking.status !== 'Cancel'){
+            canceledBooking = await Booking.findByIdAndUpdate(
+                bookingId,
+                {
+                    $set: {
+                        status: 'Canceled',
+                    }
+                },
+                { new: true, upsert: false, runValidators: true }
+            )
+        }
+
+        return res.status(200).json({message: "Your Booking is Canceled", canceledBooking});
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json("Internal Server Error!")
+    }
+})
+
 
 export {
     registerUser,
@@ -220,5 +250,6 @@ export {
     editUsernameById,
     passChange,
     editUserAvatar,
-    myBookings
+    myBookings,
+    handleCancelBooking
 }

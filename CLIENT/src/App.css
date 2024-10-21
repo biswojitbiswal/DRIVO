@@ -1045,14 +1045,17 @@ h1 {
   text-align: center;
   margin: .25rem;
 }
-.incomplete-badge{
-  width: 150px;
-  padding: .5rem 0;
-  background-color: var(--second-color);
-  border-radius: .5rem;
+.pending{
   color: rgb(255, 183, 0);
-  text-align: center;
-  margin: .25rem;
+}
+.confirm{
+  color: var(--first-color);
+}
+.completed{
+  color: rgb(7, 200, 7);
+}
+.cancel{
+  color: rgb(244, 46, 46);
 }
 .status-badge, .cancel-btn, .contact-btn{
   width: 150px;
