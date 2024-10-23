@@ -121,7 +121,7 @@ function AdminHome() {
 
                                         </td>
                                         <td className='pick-location'>{currBoking.pickUpLcation}</td>
-                                        <td>{currBoking.totalAmount}</td>
+                                        <td>₹{currBoking.totalAmount}</td>
                                         <td>{currBoking.paymentStatus}</td>
                                         <td key={index}>
                                             <div className="update-status">

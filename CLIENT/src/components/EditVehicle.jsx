@@ -70,9 +70,9 @@ function EditVehicle() {
     
     return (
         <>
-            <section className="vehicle-page">
+            <section id="vehicle-page">
                 <h1>Edit Vehicles Information</h1>
-                <form onSubmit={handleEdit}>
+                <form onSubmit={handleEdit} className='vehicle-edit-page'>
                     <div className="input-fields">
                         <label htmlFor="price">Price :</label>
                         <input className='input-field' name='price' id='price' type="number" placeholder='Enter Price' onChange={handleInput} value={newVehicle.price} autoComplete='off' required />
@@ -85,7 +85,7 @@ function EditVehicle() {
                        <img src={vehicle.image} alt="Vehicle" style={{width: "400px", height: "200px"}}/>
                     </div>
 
-                    <button>Submit</button>
+                    <button className='submit-btn'>Update</button>
                 </form>
 
             </section>

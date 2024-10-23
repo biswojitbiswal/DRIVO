@@ -84,7 +84,7 @@ function AdminVehicle() {
   }
   return (
     <>
-        <section className="vehicle-page">
+        <section id="vehicle-page">
         <h1>Add Vehicles</h1>
         <form onSubmit={addNewVehicle} className='vehicle-form'>
         <div className="input-fields">
@@ -126,7 +126,7 @@ function AdminVehicle() {
             </select>
           </div>
           
-          <button type='submit' className='btn submit-btn'>Send</button>
+          <button type='submit' className='submit-btn'>Send</button>
         </form>
       </section>
     </>

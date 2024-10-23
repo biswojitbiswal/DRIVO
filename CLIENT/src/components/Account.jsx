@@ -119,10 +119,6 @@ function Account() {
           <div className="change-pass">
             <Link to="/account/pass">Change Password</Link>
           </div>
-
-          {/* <div className="dlt-account">
-            <Link to='/account/delete'>Delete Account</Link>
-          </div> */}
         </div>
 
       </section>

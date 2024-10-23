@@ -59,7 +59,7 @@ function AdminUsers() {
   }, [])
   return (
     <>
-      <section id="admin-panel admin-users-section" className='admin-dashboard'>
+      <section id="admin-users-section" className='admin-dashboard'>
         <table>
           <thead>
             <tr>

@@ -68,8 +68,8 @@ function AdminEditUser() {
 
   return (
     <>
-      <section>
-        <form onSubmit={handleUpdate}>
+      <section id='vehicle-page'>
+        <form onSubmit={handleUpdate} className='edit-user-form'>
         <div className="input-fields">
             <label htmlFor="userName">Username :</label>
             <input className='input-field' name='userName' id='userName'  type="userName" placeholder='Enter Your Username' onChange={handleInput} value={user.userName}  autoComplete='off' required />
@@ -78,7 +78,7 @@ function AdminEditUser() {
             <label htmlFor="phone">Phone :</label>
             <input className='input-field' name='phone' id='phone'  type="phone" placeholder='Enter Your Phone' onChange={handleInput} value={user.phone} autoComplete='off' required />
           </div>
-          <button>Edit</button>
+          <button className='submit-btn'>Edit</button>
         </form>
       </section>
     </>

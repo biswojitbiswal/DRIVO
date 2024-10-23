@@ -45,7 +45,7 @@ function Navbar() {
                         <NavLink to="/terms&conditions" className={({isActive}) => isActive ? "hovering" : "nav-link"}>Terms & Conditons</NavLink>
                     </li>   
                     <li onClick={handleClose}>
-                        <NavLink to="/mybookings" className={({isActive}) => isActive ? "hovering" : "nav-link"}>My Bookings</NavLink>
+                        <NavLink to="/mybookings" className={({isActive}) => isActive ? "hovering" : "nav-link"}>Bookings</NavLink>
                     </li>
                     {
                         !isLoggedIn ? 

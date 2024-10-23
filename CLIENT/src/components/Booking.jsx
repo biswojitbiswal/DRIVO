@@ -192,6 +192,8 @@ function Booking() {
               <h2>lorem ipsum</h2>
               <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae deserunt facere dignissimos nulla possimus ex eos, dolore saepe ipsa in quam ea qui error enim laboriosam dolor hic quae dolorum!</p>
             </div>
+            
+            
           </div>
         </div>
         <div className="booking-details">
@@ -224,13 +226,21 @@ function Booking() {
 
             <div className="input-fields">
               <label htmlFor="dropUpDT">Drop-up Date :</label>
-              <DatePicker id='dropUpDT' selected={formData.dropUpDT} onChange={(date) => handleDateChange('dropUpDT', date)} showTimeSelect timeFormat='HH:mm' timeCaption="Time" timeIntervals={60} dateFormat="yyyy-MM-dd, HH:mm" minDate={new Date()} minTime={minDropupTime} maxTime={maxDropupTime} placeholderText="Select You DOB" className="custom-datepicker" />
+              <DatePicker id='dropUpDT' selected={formData.dropUpDT} 
+              onChange={(date) => handleDateChange('dropUpDT', date)} showTimeSelect timeFormat='HH:mm' timeCaption="Time" timeIntervals={60} dateFormat="yyyy-MM-dd, HH:mm" 
+              minDate={new Date()} minTime={minDropupTime} 
+              maxTime={maxDropupTime} placeholderText="Select You DOB" className="custom-datepicker" />
             </div>
 
+          
+            
             <div className="input-fields">
               <label htmlFor="pickUpLcation">Pick-up Location :</label>
-              <select name="pickUpLcation" id="pickUpLcation" value={formData.pickUpLcation} onChange={handleFormData}>
-                <option>Select</option>
+              <select name="pickUpLcation" id="pickUpLcation" 
+              value={formData.pickUpLcation} 
+              onChange={handleFormData} required>
+
+              <option value="" disabled selected hidden>Select a location</option>
 
                 <option value="Rajpath, India Gate, New Delhi, Delhi 110001">Rajpath, India Gate, New Delhi, Delhi 110001</option>
 
@@ -243,13 +253,11 @@ function Booking() {
                 <option value="Mehrauli, New Delhi, Delhi 110030">Mehrauli, New Delhi, Delhi 110030</option>
               </select>
             </div>
-
-            <div className="input-fields">
-              <label>Total Price: </label>
-              <p>{totalPrice ? `₹${totalPrice}` : "Select Pickup And Drop Date & Time"}</p>
-            </div>
-            <button onClick={handlePayment} disabled={!totalPrice} style={{ opacity: !totalPrice ? 0.5 : 1.0 }}>Pay Now</button>
+        
           </form>
+            <button className='subnit-btn' onClick={handlePayment} disabled={!totalPrice} style={{ opacity: !totalPrice ? 0.5 : 1.0 }}>
+              {totalPrice ? `Pay Now ₹${totalPrice}` : "Select Pickup And Drop Date & Time"}
+              </button>
         </div>
 
 

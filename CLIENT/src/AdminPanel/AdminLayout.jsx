@@ -2,43 +2,36 @@ import React, { useState } from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
 
 function AdminLayout() {
-    const [menu, setMenu] = useState(true)
+    const [menu, setMenu] = useState('dashboard')
 
-    const handleNavbar = (e) => {
-        setMenu(!menu);
+    const handleNavbar = (menuItem) => {
+        setMenu(menuItem);
     }
 
   return (
     <>
       <header>
         <div className="admin-controller">
-            <div className="admin-upper">
-                {
-                    !menu ? <i className="fa-solid fa-bars admin-navbar" onClick={handleNavbar}></i> : <i className="fa-solid fa-x admin-navbar" onClick={handleNavbar}></i>
-                }
-                <h1>Admin Panel</h1>
-            </div>
-            <div className="admin-lower">
-            <nav className={`admin-sidebar ${menu ? 'sidebar-active' : ''}`}>
-                <ul>
-                    <li>
+            <div className="admin-nav">
+            <ul>
+                    <li onClick={() => handleNavbar('dashboard')} className={menu === 'dashboard' ? 'admin-nav-active' : ''}>
                         <NavLink to="/admin">DashBoard</NavLink>
                     </li>
-                    <li>
-                        <NavLink to="/admin/vehicles">Add Vehicle</NavLink>
-                    </li>
-                    <li>
+                    
+                    <li onClick={() => handleNavbar('users')} className={menu === 'users' ? 'admin-nav-active' : ''}>
                         <NavLink to="/admin/users">Users</NavLink>
                     </li>
-                    <li>
+                    <li onClick={() => handleNavbar('contacts')} className={menu === 'contacts' ? 'admin-nav-active' : ''}>
                         <NavLink to="/admin/contacts">Contacts</NavLink>
+                    </li>
+                    <li onClick={() => handleNavbar('vehicle')} className={menu === 'vehicle' ? 'admin-nav-active' : ''}>
+                        <NavLink to="/admin/vehicles">Add Vehicle</NavLink>
                     </li>
                     
                 </ul>
-            </nav>
             
-            <Outlet />
             </div>
+            <Outlet />
             
         </div>
       </header>

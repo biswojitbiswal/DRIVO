@@ -93,7 +93,7 @@ function Home() {
                     ) : ""
                   }
                   
-                      <Link to={`/booking/${currVehicle._id}`} className='link-btn'>Book</Link>
+                      <Link to={`/booking/${currVehicle._id}`} className='link-btn book-btn'>Book</Link>
 
                 </div>
               </div>

@@ -32,11 +32,13 @@ function Footer() {
       </div>
       <div className="social-media">
         <h1>Social Media</h1>
-        <i className="fa-brands fa-whatsapp"></i>
-        <i className="fa-solid fa-envelope"></i>
-        <i className="fa-brands fa-instagram"></i>
-        <i className="fa-brands fa-twitter"></i>
-        <i className="fa-brands fa-youtube"></i>
+        <div className="social-link">
+          <i className="fa-brands fa-whatsapp"></i>
+          <i className="fa-solid fa-envelope"></i>
+          <i className="fa-brands fa-instagram"></i>
+          <i className="fa-brands fa-twitter"></i>
+          <i className="fa-brands fa-youtube"></i>
+        </div>
       </div>
       <div className="site-map">
         <h1>Site Map</h1>
