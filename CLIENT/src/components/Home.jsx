@@ -79,12 +79,15 @@ function Home() {
                 <div className="vehicle-image">
                   <img src={currVehicle.image} alt="Image" loading="lazy" />
                 </div>
-                <div className="vehicle-details">
+                <div className="vehicle-card-details">
                   <h2>{currVehicle.vehicleModel}</h2>
                   <p><i className="fa-solid fa-person"></i> {currVehicle.seats} Seater</p>
                   <p><i className="fa-solid fa-indian-rupee-sign"></i> {currVehicle.price} / 24Hr</p>
                   <p><i className="fa-solid fa-gas-pump"></i> {currVehicle.fuel} / <i className="fa-solid fa-gear"></i> {currVehicle.vehicleType}</p>
-                  {
+                  
+                </div>
+                <div className="vehicle-card-btn">
+                {
                     user.isAdmin ? (
                     <>
                       <Link className='link-btn' to={`/edit/${currVehicle._id}`} state={{vehicle: currVehicle}}>Edit</Link>

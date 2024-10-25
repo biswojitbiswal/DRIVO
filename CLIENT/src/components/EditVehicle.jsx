@@ -71,7 +71,7 @@ function EditVehicle() {
     return (
         <>
             <section id="vehicle-page">
-                <h1>Edit Vehicles Information</h1>
+                <h1>Edit Vehicles</h1>
                 <form onSubmit={handleEdit} className='vehicle-edit-page'>
                     <div className="input-fields">
                         <label htmlFor="price">Price :</label>
@@ -82,7 +82,7 @@ function EditVehicle() {
                         <label htmlFor="image">Image :</label>
                         <input type="file" className="input-field" name="image" placeholder='Car Image' onChange={handleFile} autoComplete='off' />
 
-                       <img src={vehicle.image} alt="Vehicle" style={{width: "400px", height: "200px"}}/>
+                       <img src={vehicle.image} alt="Vehicle" style={{width: "250px", height: "150px"}}/>
                     </div>
 
                     <button className='submit-btn'>Update</button>

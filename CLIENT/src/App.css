@@ -461,7 +461,7 @@ footer .social-media i {
   border-radius: 1rem;
 }
 
-.vehicle-details {
+.vehicle-card-details {
   text-align: center;
   color: black;
   display: flex;
@@ -469,15 +469,18 @@ footer .social-media i {
   justify-content: center;
   align-items: center;
 }
-.vehicle-details i{
+.vehicle-card-details i{
   color: var(--first-color);
 }
-
-.vehicle-details p {
-  font-weight: 700;
+.vehicle-card-details h2{
+  margin: .5rem 0rem;
 }
-.book-btn{
-  margin-top: 1.5rem;
+.vehicle-card-details p {
+  font-weight: 700;
+  margin: .25rem 0rem;
+}
+.vehicle-card-btn{
+  margin: 1rem 0rem;
 }
 
 
@@ -1133,12 +1136,12 @@ select{
 }
 
 .vehicle-form {
-  width: auto;
-  min-width: 800px;
+  width: 50%;
+  /* min-width: 800px; */
   height: auto;
   border-radius: .5rem;
   padding: 2rem;
-  margin-bottom: 2rem;
+  margin: 2rem;
   background-color: #e6e9ee;
 }
 
@@ -1168,7 +1171,7 @@ select{
 
 /* ===========my booking page=========== */
 .my-bookings-container {
-  width: 80%;
+  width: 85%;
   margin: 0 auto;
   padding: 1rem;
   font-family: Arial, sans-serif;
@@ -1181,12 +1184,13 @@ h1 {
 }
 
 .booking-card {
+  
   display: flex;
   justify-content: space-between;
   border: 1px solid #ddd;
   padding: 1rem 2.5rem;
-  margin-bottom: 20px;
-  border-radius: 8px;
+  margin-bottom: 1.25rem;
+  border-radius: .5rem;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   color: hsl(0, 0%, 0%);
   font-size: 1.25rem;
@@ -1205,7 +1209,7 @@ h1 {
   margin-right: 20px;
 }
 .vehicle-details{
-  text-align: left;
+  /* text-align: left; */
   color: #000;
 }
 
@@ -1416,7 +1420,19 @@ h1 {
     left: 0;
   }
 
-
+  /* ========mybooking========= */
+  .booking-card{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .booking-btns{
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+  }
+  .vehicle-details{
+    text-align: left;
+  }
 }
 
 
@@ -1499,13 +1515,28 @@ h1 {
 
 
   /* ========Explore page======= */
+  #explore {
+    padding: .5rem;
+  }
+  .outer-container{
+    width: 95%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .vehicle-container {
-    width: 320px;
+    width: 100%;
+    height: auto;
     padding: .5rem;
   }
   .vehicle-container .vehicle-image {
     height: 45%;
-    width: 100%;
+    width: 95%;
+  }
+  .vehicle-card-details {
+    width: 90%;
   }
 
   /* =======contact page======= */
@@ -1522,6 +1553,89 @@ h1 {
   /* ========register form========= */
   .register-form{
     width: 100%;
+  }
 
+  /* =========mybooking========== */
+  .my-bookings-container{
+    width: 95%;
+    padding: 1rem .75rem;
+    margin: 2rem 0rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .booking-card {
+    width: 95%;
+    display: flex;
+    height: auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem 0rem;
+    /* background-color: lightblue; */
+  }
+  .vehicle-info{
+    width: 90%;
+    padding-bottom: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  .vehicle-details{
+    width: 40%;
+    text-align: center;
+  }
+  .booking-info{
+    width: 90%;
+    
+    p{
+      margin-bottom: 1rem;
+    }
+  }
+  .booking-btns{
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+
+  /* ==========admin navbar ========== */
+  .admin-nav ul {
+    width: 90%;
+    height: 50px;
+    padding: 0rem 1rem;
+    /* overflow-x: scroll; */
+  }
+  .admin-nav ul li {
+    width: 200px;
+    padding: .5rem 0rem;
+  }
+
+  #vehicle-page {
+    width: 85%;
+    min-height: 85vh;
+    /* background-color: red; */
+  }
+  .vehicle-form {
+    width: 100%;
+    padding: 1.5rem .75rem;
+    margin: .5rem;
+
+  }
+  .edit-user-form{
+    width: 95%;
+    min-width: 90%;
+    padding: 1rem .5rem;
+    margin: .5rem;
+  }
+  .vehicle-edit-page{
+    width: 95%;
+    min-width: 90%;
+    padding: 1rem .5rem;
+    margin: .5rem;
+  }
+  .vehicle-edit-page .input-fields img{
+    width: 80%;
   }
 }

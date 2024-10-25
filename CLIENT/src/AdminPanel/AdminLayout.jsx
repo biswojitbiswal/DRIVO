@@ -10,12 +10,12 @@ function AdminLayout() {
 
   return (
     <>
-      <header>
+      <section>
         <div className="admin-controller">
             <div className="admin-nav">
             <ul>
                     <li onClick={() => handleNavbar('dashboard')} className={menu === 'dashboard' ? 'admin-nav-active' : ''}>
-                        <NavLink to="/admin">DashBoard</NavLink>
+                        <NavLink to="/admin">Dashboard</NavLink>
                     </li>
                     
                     <li onClick={() => handleNavbar('users')} className={menu === 'users' ? 'admin-nav-active' : ''}>
@@ -25,7 +25,7 @@ function AdminLayout() {
                         <NavLink to="/admin/contacts">Contacts</NavLink>
                     </li>
                     <li onClick={() => handleNavbar('vehicle')} className={menu === 'vehicle' ? 'admin-nav-active' : ''}>
-                        <NavLink to="/admin/vehicles">Add Vehicle</NavLink>
+                        <NavLink to="/admin/vehicles">Vehicle</NavLink>
                     </li>
                     
                 </ul>
@@ -34,7 +34,7 @@ function AdminLayout() {
             <Outlet />
             
         </div>
-      </header>
+      </section>
       
     </>
   )

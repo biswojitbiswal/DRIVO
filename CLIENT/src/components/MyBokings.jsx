@@ -59,8 +59,7 @@ function MyBokings() {
   }, [])
   return (
     <>
-      <section>
-        <div className="my-bookings-container">
+        <section className="my-bookings-container">
           <h1>My Bookings</h1>
           {!bookingData || bookingData.length == 0 ? (<p>Not Found!</p>) :
             bookingData.map((booking, index) => {
@@ -100,7 +99,6 @@ function MyBokings() {
               </div>
             })
           }
-        </div>
 
       </section>
     </>
