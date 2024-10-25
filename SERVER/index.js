@@ -13,7 +13,7 @@ const app = express();
 const PORT = process.env.PORT || 7000
 
 app.use(cors({
-    origin: process.env.CORS_ORIGIN,
+    origin: ["https://drivo-ecru.vercel.app"],
     methods: ["GET, POST, PUT, DELETE, PATCH, HEAD"],
     credentials: true
 }))
