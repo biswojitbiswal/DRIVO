@@ -25,7 +25,7 @@ function Register() {
   const handleRegisterData = async(e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:4000/api/drivo/user/register`, {
+      const response = await fetch(`https://drivo-api.vercel.app/api/drivo/user/register`, {
         method: "POST",
         headers: {
           'Content-Type' : 'application/json'

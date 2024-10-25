@@ -23,7 +23,7 @@ function Login() {
   const handleLoginData = async (e) => {
     e.preventDefault()
     try {
-      const response = await fetch(`http://localhost:4000/api/drivo/user/login`, {
+      const response = await fetch(`https://drivo-api.vercel.app/api/drivo/user/login`, {
         method: "POST",
         headers: {
           'Content-Type': 'application/json'

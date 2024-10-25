@@ -50,7 +50,7 @@ function Booking() {
 
   const getVehicleInfo = async () => {
     try {
-      const response = await fetch(`http://localhost:4000/api/drivo/vehicle/${vehicleId}`, {
+      const response = await fetch(`https://drivo-api.vercel.app/api/drivo/vehicle/${vehicleId}`, {
         method: "GET",
         headers: {
           Authorization: authorization,
@@ -72,7 +72,7 @@ function Booking() {
     e.preventDefault();
     // console.log(formData)
     try {
-      const response = await fetch(`http://localhost:4000/api/drivo/vehicle/booking/${vehicleId}`, {
+      const response = await fetch(`https://drivo-api.vercel.app/api/drivo/vehicle/booking/${vehicleId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -101,7 +101,7 @@ function Booking() {
       handler: async (response) => {
         console.log("response", response)
         try {
-          const res = await fetch(`http://localhost:4000/api/drivo/vehicle/verify`, {
+          const res = await fetch(`https://drivo-api.vercel.app/api/drivo/vehicle/verify`, {
             method: "POST",
             headers: {
               'Content-Type': 'application/json',

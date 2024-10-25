@@ -11,7 +11,7 @@ function AdminHome() {
 
     const getAllBookings = async () => {
         try {
-            const response = await fetch(`http://localhost:4000/api/drivo/admin/bookings`, {
+            const response = await fetch(`https://drivo-api.vercel.app/api/drivo/admin/bookings`, {
                 method: "GET",
                 headers: {
                     Authorization: authorization,
@@ -52,7 +52,7 @@ function AdminHome() {
                 // Use the updated status from the component's state or the default 'Pending'
                 const bookingStatus = status[bookingId] || 'Pending'; 
                 console.log(bookingStatus);
-                const response = await fetch(`http://localhost:4000/api/drivo/admin/bookings/status/${bookingId}`, {
+                const response = await fetch(`https://drivo-api.vercel.app/api/drivo/admin/bookings/status/${bookingId}`, {
                     method: "PATCH",
                     headers: {
                         Authorization: authorization,

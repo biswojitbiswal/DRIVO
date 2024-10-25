@@ -10,7 +10,7 @@ function Explore() {
     
     const getAllVehicle = async () => {
       try {
-        const response = await fetch(`http://localhost:4000/api/drivo/vehicle/getvehicles`, {
+        const response = await fetch(`https://drivo-api.vercel.app/api/drivo/vehicle/getvehicles`, {
           method: "GET",
         })
   
@@ -27,7 +27,7 @@ function Explore() {
   
     const handleDelete = async(id) => {
       try {
-        const response = await fetch(`http://localhost:4000/api/drivo/vehicle/delete/${id}`, {
+        const response = await fetch(`https://drivo-api.vercel.app/api/drivo/vehicle/delete/${id}`, {
           method: "DELETE",
           headers: {
             Authorization: authorization,

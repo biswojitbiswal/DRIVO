@@ -12,7 +12,7 @@ function AdminUsers() {
 
   const getAllUsers = async () => {
     try {
-      const response = await fetch(`http://localhost:4000/api/drivo/admin/users`, {
+      const response = await fetch(`https://drivo-api.vercel.app/api/drivo/admin/users`, {
         method: "GET",
         headers: {
           Authorization: authorization
@@ -35,7 +35,7 @@ function AdminUsers() {
 
   const deleteUser = async (id) => {
     try {
-      const response = await fetch(`http://localhost:4000/api/drivo/admin/deleteuser/${id}`, {
+      const response = await fetch(`https://drivo-api.vercel.app/api/drivo/admin/deleteuser/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: authorization,

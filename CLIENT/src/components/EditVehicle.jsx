@@ -47,7 +47,7 @@ function EditVehicle() {
             const formData = new FormData();
             formData.append('price', newVehicle.price);
             formData.append('image', newVehicle.image);
-            const response = await fetch(`http://localhost:4000/api/drivo/vehicle/edit/${vehicle._id}`, {
+            const response = await fetch(`https://drivo-api.vercel.app/api/drivo/vehicle/edit/${vehicle._id}`, {
                 method: "PATCH",
                 headers: {
                     Authorization: authorization,

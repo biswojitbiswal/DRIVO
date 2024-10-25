@@ -28,7 +28,7 @@ export const AuthContextProvider = ({children}) => {
 
     const userAuthntication = async() =>{
         try {
-            const response = await fetch(`http://localhost:4000/api/drivo/user/getuser`, {
+            const response = await fetch(`https://drivo-api.vercel.app/api/drivo/user/getuser`, {
                 method: "GET",
                 headers: {
                     Authorization: authorization

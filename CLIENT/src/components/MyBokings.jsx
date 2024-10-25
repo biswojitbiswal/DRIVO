@@ -15,7 +15,7 @@ function MyBokings() {
 
   const handleCancelBooking = async(id) => {
     try {
-      const response = await fetch(`http://localhost:4000/api/drivo/user/mybookings/cancel/${id}`, {
+      const response = await fetch(`https://drivo-api.vercel.app/api/drivo/user/mybookings/cancel/${id}`, {
         method: "PATCH",
         headers: {
           Authorization: authorization,
@@ -36,7 +36,7 @@ function MyBokings() {
 
   const getMyBookings = async () => {
     try {
-      const response = await fetch(`http://localhost:4000/api/drivo/user/mybookings`, {
+      const response = await fetch(`https://drivo-api.vercel.app/api/drivo/user/mybookings`, {
         method: "GET",
         headers: {
           Authorization: authorization,

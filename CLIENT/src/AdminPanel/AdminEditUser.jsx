@@ -13,7 +13,7 @@ function AdminEditUser() {
   const {authorization} = useAuth();
 
   const getUserById = async() => {
-    const response = await fetch(`http://localhost:4000/api/drivo/admin/user/${id}`, {
+    const response = await fetch(`https://drivo-api.vercel.app/api/drivo/admin/user/${id}`, {
       method: "GET",
       headers: {
         Authorization: authorization
@@ -40,7 +40,7 @@ function AdminEditUser() {
   const handleUpdate = async(e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:4000/api/drivo/admin/user/edit/${id}`, {
+      const response = await fetch(`https://drivo-api.vercel.app/api/drivo/admin/user/edit/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

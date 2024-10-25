@@ -59,7 +59,7 @@ function AdminVehicle() {
       formData.append('fuel', vehicle.fuel);
       formData.append('vehicleType', vehicle.vehicleType);
 
-      const response = await fetch(`http://localhost:4000/api/drivo/vehicle/add`, {
+      const response = await fetch(`https://drivo-api.vercel.app/api/drivo/vehicle/add`, {
         method: "POST",
         headers: {
           Authorization : authorization

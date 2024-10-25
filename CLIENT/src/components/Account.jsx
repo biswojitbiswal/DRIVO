@@ -21,7 +21,7 @@ function Account() {
       setEditUser(true);
     } else {
       try {
-        const response = await fetch(`http://localhost:4000/api/drivo/user//editusername`, {
+        const response = await fetch(`https://drivo-api.vercel.app/api/drivo/user//editusername`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
@@ -70,7 +70,7 @@ function Account() {
     formData.append('avatar', file);
 
     try {
-      const response = await fetch(`http://localhost:4000/api/drivo/user/addavatar`, {
+      const response = await fetch(`https://drivo-api.vercel.app/api/drivo/user/addavatar`, {
         method: "PATCH",
         headers: {
           Authorization: authorization

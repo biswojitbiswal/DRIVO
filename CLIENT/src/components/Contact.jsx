@@ -38,7 +38,7 @@ function Contact() {
   const handleContactForm = async(e) => {
     e.preventDefault()
     try {
-      const response = await fetch(`http://localhost:4000/api/drivo/contact/form`, {
+      const response = await fetch(`https://drivo-api.vercel.app/api/drivo/contact/form`, {
         method: "POST",
         headers: {
           'Content-Type' : 'application/json',

@@ -23,7 +23,7 @@ function ChangePass() {
     const handlePassSubmit = async(e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`http://localhost:4000/api/drivo/user/changePass`, {
+            const response = await fetch(`https://drivo-api.vercel.app/api/drivo/user/changePass`, {
                 method: "PATCH",
                 headers: {
                     'Content-Type': 'application/json',

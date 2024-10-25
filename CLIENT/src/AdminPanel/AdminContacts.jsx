@@ -11,7 +11,7 @@ function AdminContacts() {
 
 
   const getAllContacts = async() => {
-    const response = await fetch(`http://localhost:4000/api/drivo/admin/contacts`, {
+    const response = await fetch(`https://drivo-api.vercel.app/api/drivo/admin/contacts`, {
       method: "GET",
       headers: {
         Authorization: authorization
@@ -28,7 +28,7 @@ function AdminContacts() {
 
   const handleDleteContact = async(id) => {
     try {
-      const response = await fetch(`http://localhost:4000/api/drivo/admin/contact/delete/${id}`, {
+      const response = await fetch(`https://drivo-api.vercel.app/api/drivo/admin/contact/delete/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: authorization,
