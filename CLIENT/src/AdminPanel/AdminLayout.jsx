@@ -1,17 +1,19 @@
 import React, { useState } from 'react'
 import { NavLink, Outlet, Navigate } from 'react-router-dom'
-import { useAuth } from '../Store/Auth'
+import {useAuth} from '../Store/Auth'
 
 function AdminLayout() {
+
   const {user, loading} = useAuth();
 
   if(loading){
     return <h1>Loading....</h1>
   }
 
-  if(!user || !user.isAdmin){
+  if(!user.isAdmin){
     return <Navigate to="/" />;
   }
+
   return (
     <>
       <section>
