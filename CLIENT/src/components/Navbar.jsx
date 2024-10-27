@@ -26,7 +26,7 @@ function Navbar() {
                 {
                     user.isAdmin ? (
                         <div className="explore-btn text-focus-in">
-                            <Link to="/" >Explore</Link>
+                            <Link to="/admin">Dasboard</Link>
                         </div>
                     ) : ""
                 }
