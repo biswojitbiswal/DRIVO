@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import ProfileImg from '../Images/DP.jpg'
 import { useAuth } from '../Store/Auth'
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import imageCompression from 'browser-image-compression';
 import { toast } from 'react-toastify';
 
@@ -12,7 +12,11 @@ function Account() {
   const [changeUsername, setChangeUsername] = useState("");
 
 
-  const { setUser, user, authorization } = useAuth();
+  const { setUser, user, authorization, isLoggedIn } = useAuth();
+
+  if(!isLoggedIn){
+    return <Navigate to="/login" />
+  }
 
 
   const editUsername = async () => {

@@ -30,7 +30,7 @@ function Booking() {
   })
 
   const { vehicleId } = useParams()
-  const { authorization } = useAuth();
+  const { authorization, isLoggedIn } = useAuth();
   const navigate = useNavigate();
   // console.log(vehicleId)
 
@@ -134,6 +134,9 @@ function Booking() {
 
 
   useEffect(() => {
+    if(!isLoggedIn){
+      navigate("/login");
+    }
     getVehicleInfo();
     if (formData.pickUpDT && formData.dropUpDT) {
       const durationInMs = formData.dropUpDT - formData.pickUpDT;

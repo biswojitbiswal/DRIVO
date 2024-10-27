@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { useAuth } from '../Store/Auth'
 import { Link } from 'react-router-dom'
 import {toast} from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
 
 function MyBokings() {
   const [bookingData, setBookingData] = useState([]);
 
-  const { authorization } = useAuth();
+  const { authorization, isLoggedIn } = useAuth();
+  const navigate = useNavigate();
 
   const formatDateTime = (dateString) => {
     const date = new Date(dateString);
@@ -55,6 +57,9 @@ function MyBokings() {
   }
 
   useEffect(() => {
+    if(!isLoggedIn){
+      navigate("/login");
+    }
     getMyBookings();
   }, [])
   return (

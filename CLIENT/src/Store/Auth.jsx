@@ -10,7 +10,8 @@ export const useAuth = () => {
 export const AuthContextProvider = ({children}) => {
 
     const [token, setToken] = useState(Cookies.get('accessToken'))
-    const [user, setUser] = useState("")
+    const [user, setUser] = useState("");
+    
     const authorization = `Bearer ${token}`;
 
     const storeTokenInCookies = (generateToken) => {
