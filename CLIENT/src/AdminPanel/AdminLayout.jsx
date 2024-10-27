@@ -4,13 +4,15 @@ import {useAuth} from '../Store/Auth'
 
 function AdminLayout() {
 
-  const {user, loading} = useAuth();
+  console.log("User:", user);
+  console.log("Loading:", loading);
 
-  if(loading){
-    return <h1>Loading....</h1>
+  if (loading) {
+    return <h1>Loading....</h1>;
   }
 
-  if(!user.isAdmin){
+  if (!user?.isAdmin) {
+    console.log("User is not an admin, redirecting...");
     return <Navigate to="/" />;
   }
 
