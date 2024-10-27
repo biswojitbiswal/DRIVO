@@ -7,7 +7,7 @@ import { useAuth } from '../Store/Auth';
 function Navbar() {
     const [menu, setMenu] = useState(false);
 
-    const {isLoggedIn} = useAuth();
+    const {isLoggedIn, user} = useAuth();
 
     const toggleBtn = () => {
         setMenu(!menu);
@@ -23,6 +23,13 @@ function Navbar() {
                     <NavLink className='user-icon' to="/account"><i className="fa-solid fa-user"></i></NavLink>
                 </div>
                 <NavLink className='logo' to="/"><h2><b>Drivo</b></h2></NavLink>
+                {
+                    user.isAdmin ? (
+                        <div className="explore-btn text-focus-in">
+                            <Link to="/" >Explore</Link>
+                        </div>
+                    ) : ""
+                }
             </div>
             
             <div className="nav-menu">

@@ -21,7 +21,7 @@ function Home() {
           </div>
           <h1 className='description text-focus-in'>Find the Perfect Ride for Your Next Journey!</h1>
           <div className="explore-btn text-focus-in">
-            <Link to="/admin" >Explore</Link>
+            <Link to="/" >Explore</Link>
           </div>
         </div>
       </section>
