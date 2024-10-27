@@ -79,9 +79,12 @@ function AdminHome() {
     }
 
     const formatDateTime = (dateString) => {
+        if (!dateString) return 'Invalid Date';
         const date = new Date(dateString);
+        if (isNaN(date)) return 'Invalid Date';
         return `${date.toISOString().slice(0, 10)}, ${date.getUTCHours().toString().padStart(2, '0')}:${date.getUTCMinutes().toString().padStart(2, '0')}`;
     };
+    
 
     return (
         <>

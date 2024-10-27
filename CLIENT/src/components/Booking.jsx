@@ -65,6 +65,7 @@ function Booking() {
 
     } catch (error) {
       console.log(error)
+      toast.error("Error fetching vehicle information. Please try again.");
     }
   }
 
