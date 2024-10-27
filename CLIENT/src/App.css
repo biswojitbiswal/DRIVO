@@ -1640,7 +1640,7 @@ h1 {
   .admin-nav ul {
     width: 90%;
     height: 50px;
-    padding: 0rem 1.25rem;
+    padding: 0rem .75rem;
   }
   .admin-nav ul li {
     width: 200px;
