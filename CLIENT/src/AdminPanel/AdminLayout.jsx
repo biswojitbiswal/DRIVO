@@ -4,6 +4,8 @@ import {useAuth} from '../Store/Auth'
 
 function AdminLayout() {
 
+  const {user, loading} = useAuth();
+
   console.log("User:", user);
   console.log("Loading:", loading);
 
