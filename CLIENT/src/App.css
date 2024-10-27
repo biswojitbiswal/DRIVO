@@ -298,10 +298,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 1rem 0rem 2rem 0rem;
+  margin: 1rem 0rem 2rem 1rem;
 }
 
-.home-container a {
+.explore-btn a {
   text-decoration: none;
   color: #ffffff;
   font-size: 1.7rem;

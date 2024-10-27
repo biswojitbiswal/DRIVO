@@ -1,11 +1,21 @@
-import React from 'react'
+import React, {useRef} from 'react'
 import MainImg from '../Images/BMW.png'
 import SecondImg from '../Images/FERRARI.png'
 import {Link} from 'react-router-dom'
 import Explore from './Explore'
+import { useAuth } from '../Store/Auth'
 
 
 function Home() {
+  const {user} = useAuth();
+
+  const exploreRef = useRef(null);
+
+  const scrollToExplore = () => {
+    if (exploreRef.current) {
+      exploreRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   return (
     <>
       <section id='home'>
@@ -20,12 +30,23 @@ function Home() {
             </div>
           </div>
           <h1 className='description text-focus-in'>Find the Perfect Ride for Your Next Journey!</h1>
-          <div className="explore-btn text-focus-in">
-            <Link to="/" >Explore</Link>
-          </div>
+          {
+            user.isAdmin ? (
+              <div className="explore-btn text-focus-in">
+                <Link to="/admin" >Dashboard</Link>
+              </div>
+            ) : (
+              <div className="explore-btn text-focus-in">
+                <button onClick={scrollToExplore}>Explore</button> {/* Change Link to button */}
+              </div>
+            )
+          }
+          
         </div>
       </section>
-      <Explore />
+      <div ref={exploreRef}>
+        <Explore />
+      </div>
 
     </>
 

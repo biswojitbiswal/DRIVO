@@ -1,13 +1,13 @@
 import React from 'react'
 import { useState } from 'react'
-import { NavLink, Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { useAuth } from '../Store/Auth';
 
 
 function Navbar() {
     const [menu, setMenu] = useState(false);
 
-    const {isLoggedIn, user} = useAuth();
+    const {isLoggedIn} = useAuth();
 
     const toggleBtn = () => {
         setMenu(!menu);
@@ -23,13 +23,6 @@ function Navbar() {
                     <NavLink className='user-icon' to="/account"><i className="fa-solid fa-user"></i></NavLink>
                 </div>
                 <NavLink className='logo' to="/"><h2><b>Drivo</b></h2></NavLink>
-                {
-                    user.isAdmin ? (
-                        <div className="explore-btn text-focus-in">
-                            <Link to="/admin">Dasboard</Link>
-                        </div>
-                    ) : ""
-                }
             </div>
             
             <div className="nav-menu">
