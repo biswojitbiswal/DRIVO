@@ -1,11 +1,11 @@
 {
   "rewrites": [
     {
-      "source": "/admin/:path*",
+      "source": "/:path*",
       "destination": "/index.html"
     },
     {
-      "source": "/:path*",
+      "source": "/admin/:path*",
       "destination": "/index.html"
     }
   ]
