@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {useNavigate} from 'react-router-dom'
 import { useAuth } from '../Store/Auth';
 import { toast } from 'react-toastify';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
 function Register() {
   const [signupData, setSignupData] = useState({
@@ -13,7 +13,11 @@ function Register() {
   })
 
   const navigate = useNavigate();
-  const {storeTokenInCookies} = useAuth();
+  const {storeTokenInCookies, isLoggedIn} = useAuth();
+
+  if(isLoggedIn){
+    return <Navigate to="/" />;
+  }
 
   const handleInput = (e) => {
     setSignupData({
