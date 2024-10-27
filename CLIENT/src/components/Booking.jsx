@@ -214,7 +214,7 @@ function Booking() {
 
             <div className="input-fields">
               <label htmlFor="dlNo">DL No. :</label>
-              <input className='input-field' name='dlNo' id='dlNo' type="text" onChange={handleFormData} value={formData.dlNo} placeholder='HR-0619850034761' autoComplete='off' required />
+              <input className='input-field' name='dlNo' id='dlNo' type="text" onChange={handleFormData} value={formData.dlNo} placeholder='DL12-20201234567' autoComplete='off' required />
             </div>
 
             <div className="input-fields">
