@@ -37,7 +37,7 @@ function Home() {
               </div>
             ) : (
               <div className="explore-btn text-focus-in">
-                <button onClick={scrollToExplore}>Explore</button> {/* Change Link to button */}
+                <button className='submit-btn' onClick={scrollToExplore}>Explore</button> {/* Change Link to button */}
               </div>
             )
           }
